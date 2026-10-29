@@ -1,0 +1,2224 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JALIN SAJAK COACH STPM — Dari Persoalan kepada Puisi</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Playfair Display / Serif untuk petikan puitis -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              800: '#141d38',
+              900: '#0b1126',
+              950: '#070a18',
+            },
+            gold: {
+              400: '#ecc96b',
+              500: '#d4af37',
+              600: '#b89428',
+            },
+            softpurple: {
+              100: '#f1eef8',
+              500: '#8b72b8',
+              700: '#5c4885',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Lora', 'serif'],
+            display: ['Cinzel', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Halus dan selesa untuk mata */
+    body {
+      background-color: #0b1126;
+      color: #f1f5f9;
+      font-family: 'Inter', sans-serif;
+    }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #fce588 0%, #d4af37 60%, #b89428 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    .pulse-subtle {
+      animation: pulseSubtle 3s infinite ease-in-out;
+    }
+    @keyframes pulseSubtle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.94; transform: scale(1.008); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-navy-950 text-slate-100 antialiased selection:bg-gold-500 selection:text-navy-950">
+
+  <!-- ==================== HEADER UTAMA ==================== -->
+  <header class="sticky top-0 z-40 bg-navy-900/90 backdrop-blur-md border-b border-slate-800 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-gold-500 to-amber-300 flex items-center justify-center text-navy-950 shadow-md shadow-gold-500/20">
+          <i class="fa-solid fa-feather-pointed text-xl"></i>
+        </div>
+        <div>
+          <span class="text-xs uppercase tracking-widest text-gold-400 font-semibold block">STPM KMK</span>
+          <h1 class="text-base sm:text-lg font-bold font-display tracking-wide text-white leading-tight">JALIN SAJAK COACH</h1>
+        </div>
+      </div>
+
+      <!-- Indikator Mod & Tindakan Cepat -->
+      <div class="flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm">
+        <span id="badge-mode" class="hidden px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-slate-800 text-slate-300 border border-slate-700">
+          Mod: -
+        </span>
+        <button onclick="openModal('modal-jalin-info')" class="px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="Panduan Konsep JALIN">
+          <i class="fa-solid fa-compass text-gold-400"></i>
+          <span class="hidden md:inline">Teknik JALIN</span>
+        </button>
+        <button onclick="openModal('modal-skema-info')" class="px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="Skema 25 Markah STPM">
+          <i class="fa-solid fa-award text-amber-400"></i>
+          <span class="hidden md:inline">Skema 25M</span>
+        </button>
+        <button onclick="confirmResetProgress()" class="p-1.5 sm:px-2 sm:py-1 rounded-lg text-rose-400 hover:bg-rose-950/40 transition border border-transparent hover:border-rose-900/60" title="Mula Semula">
+          <i class="fa-solid fa-rotate-right"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== KANDUNGAN UTAMA (TAB / PANDANGAN) ==================== -->
+  <main class="flex-grow flex flex-col max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+
+    <!-- 1. PANDANGAN: HALAMAN UTAMA (LANDING) -->
+    <section id="view-home" class="view-panel active flex flex-col items-center justify-center py-6 sm:py-12 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs sm:text-sm mb-4">
+        <i class="fa-solid fa-scroll"></i>
+        <span>Kesusasteraan Melayu Komunikatif (KMK) Tingkatan 6</span>
+      </div>
+
+      <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight text-white max-w-4xl leading-tight">
+        JALIN SAJAK COACH <span class="gold-gradient-text">STPM</span>
+      </h2>
+      <p class="text-lg sm:text-xl text-gold-400/90 font-serif italic mt-2">
+        "Dari Persoalan kepada Puisi"
+      </p>
+      <p class="max-w-2xl text-slate-300 text-sm sm:text-base mt-4 leading-relaxed">
+        Belajar mengembangkan idea, menyulam makna, dan menghasilkan sajak 30–40 baris secara berperingkat di atas kertas dengan bimbingan kognitif Teknik JALIN.
+      </p>
+
+      <!-- Peringatan Pedagogi -->
+      <div class="mt-6 p-4 rounded-xl bg-navy-900/70 border border-slate-800 text-xs sm:text-sm text-slate-400 max-w-xl text-left flex items-start gap-3">
+        <i class="fa-solid fa-pen-fancy text-gold-400 text-base mt-0.5"></i>
+        <div>
+          <span class="font-semibold text-slate-200">Aplikasi ini bukan penjana sajak segera.</span>
+          <p class="mt-0.5">Anda akan menulis baris sajak sebenar di atas kertas sendiri. Aplikasi berperanan sebagai guru pembimbing peribadi yang merangsang akal, mencadangkan bank persoalan positif, dan memandu pengungkapan puitis secara tersirat tanpa gaya khutbah langsung.</p>
+        </div>
+      </div>
+
+      <!-- Butang Pilihan Mod Pembelajaran -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 w-full max-w-3xl mt-8">
+        <!-- Mod A -->
+        <div onclick="selectMode('pemulihan')" class="group cursor-pointer p-6 rounded-2xl bg-gradient-to-b from-navy-900 to-navy-900/80 border border-slate-800 hover:border-sky-500/50 hover:shadow-xl hover:shadow-sky-500/10 transition duration-300 text-left relative overflow-hidden">
+          <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center text-xl mb-4 group-hover:scale-105 transition">
+            <i class="fa-solid fa-hands-holding-child"></i>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-400">MOD A</span>
+          <h3 class="text-xl font-bold text-white mt-1 group-hover:text-sky-300 transition">Pemulihan & Asas</h3>
+          <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
+            Bimbingan berstruktur langkah demi langkah, satu baris pada satu masa, disokong oleh bank kata bertema dan rangsangan pemikiran 3 tahap.
+          </p>
+          <div class="mt-4 flex items-center gap-2 text-xs font-semibold text-sky-400 group-hover:translate-x-1 transition">
+            <span>Mula Bimbingan Asas</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </div>
+
+        <!-- Mod B -->
+        <div onclick="selectMode('pengayaan')" class="group cursor-pointer p-6 rounded-2xl bg-gradient-to-b from-navy-900 to-navy-900/80 border border-slate-800 hover:border-gold-500/50 hover:shadow-xl hover:shadow-gold-500/10 transition duration-300 text-left relative overflow-hidden">
+          <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 text-gold-400 flex items-center justify-center text-xl mb-4 group-hover:scale-105 transition">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-gold-400">MOD B</span>
+          <h3 class="text-xl font-bold text-white mt-1 group-hover:text-gold-300 transition">Pengayaan & Pengukuhan</h3>
+          <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
+            Soalan reflektif terbuka yang mencabar keaslian lambang, kedalaman makna, gaya bahasa tinggi, dan kekuatan penegasan wacana.
+          </p>
+          <div class="mt-4 flex items-center gap-2 text-xs font-semibold text-gold-400 group-hover:translate-x-1 transition">
+            <span>Mula Cabaran Lanjutan</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mod Simulasi Peperiksaan Peperiksaan -->
+      <div class="w-full max-w-3xl mt-4">
+        <button onclick="selectMode('simulasi')" class="w-full py-3.5 px-4 rounded-xl bg-slate-900/80 hover:bg-slate-800/80 border border-amber-500/30 text-amber-300 flex items-center justify-center gap-2 text-sm font-semibold transition group">
+          <i class="fa-solid fa-stopwatch text-amber-400 group-hover:scale-110 transition"></i>
+          <span>Mod Khas: Simulasi Peperiksaan STPM (Bebas Rangsangan + Pilihan Pemasa)</span>
+        </button>
+      </div>
+
+      <div class="mt-12 text-center text-xs text-slate-500">
+        <p>Aplikasi Pedagogi Kesusasteraan Melayu Komunikatif STPM</p>
+        <p class="font-medium text-slate-400 mt-1">Dibangunkan oleh <span class="text-gold-400">Nuraidah binti Mustapah</span></p>
+      </div>
+    </section>
+
+    <!-- 2. PANDANGAN: PILIH TEMA & ARAHAN SOALAN -->
+    <section id="view-theme" class="view-panel hidden flex flex-col max-w-4xl mx-auto w-full py-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-gold-400">Langkah 1</span>
+          <h2 class="text-2xl font-bold text-white font-display">Pilih Tema & Kehendak Soalan</h2>
+        </div>
+        <button onclick="navigateTo('home')" class="text-xs text-slate-400 hover:text-white flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i> Kembali ke Laman Utama
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Senarai Tema Pilihan -->
+        <div class="md:col-span-2 space-y-4">
+          <label class="block text-sm font-semibold text-slate-300">Pilih Tema Pilihan atau Masukkan Sendiri:</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="theme-options-container">
+            <!-- Disuntik melalui JS -->
+          </div>
+
+          <!-- Pilihan Tema Sendiri -->
+          <div class="p-4 rounded-xl bg-navy-900/60 border border-slate-800 space-y-3">
+            <div class="flex items-center gap-2">
+              <input type="radio" id="radio-custom-theme" name="theme-radio" value="custom" onchange="toggleCustomTheme(true)" class="accent-gold-500">
+              <label for="radio-custom-theme" class="text-sm font-bold text-slate-200">Gunakan Tema Sendiri / Soalan Peperiksaan Percubaan</label>
+            </div>
+            <div id="custom-theme-inputs" class="space-y-3 pl-5 hidden">
+              <div>
+                <label class="block text-xs text-slate-400 mb-1">Tajuk / Tema:</label>
+                <input type="text" id="input-custom-theme" placeholder="cth: Perpaduan Antara Kaum dalam Menghadapi Krisis" class="w-full px-3 py-2 rounded-lg bg-navy-950 border border-slate-700 text-sm focus:border-gold-500 focus:outline-none">
+              </div>
+              <div>
+                <label class="block text-xs text-slate-400 mb-1">Kehendak Soalan / Arahan Khusus:</label>
+                <textarea id="input-custom-desc" rows="2" placeholder="Hasilkan sebuah sajak yang menggambarkan..." class="w-full px-3 py-2 rounded-lg bg-navy-950 border border-slate-700 text-sm focus:border-gold-500 focus:outline-none"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kad Maklumat Tema Semasa -->
+        <div class="p-5 rounded-2xl bg-navy-900/90 border border-slate-800 flex flex-col justify-between h-full">
+          <div>
+            <div class="text-xs uppercase tracking-wider font-bold text-gold-400 mb-1">Fokus Pembelajaran</div>
+            <h3 id="preview-theme-title" class="text-lg font-bold text-white font-serif">Jati Diri Generasi Muda</h3>
+            <p id="preview-theme-desc" class="text-xs text-slate-300 mt-2 leading-relaxed">
+              Membina sajak yang membangkitkan kesedaran generasi muda untuk mempertahankan jati diri, menghargai warisan bangsa, dan teguh menepis cabaran globalisasi.
+            </p>
+            <div class="mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400 space-y-2">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400"></i>
+                <span>Cadangan: 5 Rangkap berjalin</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400"></i>
+                <span>Keluasan: 30–40 Baris sajak</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400"></i>
+                <span>Sasaran: 4 Persoalan & 4 Gaya Bahasa</span>
+              </div>
+            </div>
+          </div>
+
+          <button onclick="confirmThemeAndProceed()" class="mt-6 w-full py-3 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-600 hover:to-amber-600 text-navy-950 font-bold text-sm tracking-wide shadow-lg shadow-gold-500/20 transition flex items-center justify-center gap-2">
+            <span>Seterusnya: Rancang Persoalan</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PANDANGAN: PERANCANG PERSOALAN SAJAK (5 PERSOALAN) -->
+    <section id="view-planner" class="view-panel hidden flex flex-col max-w-4xl mx-auto w-full py-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-gold-400">Langkah 2 — Pemetaan Idea</span>
+          <h2 class="text-2xl font-bold text-white font-display">Rancang 5 Persoalan Sajak</h2>
+          <p class="text-xs text-slate-400 mt-1">Setiap rangkap sajak perlu berpaksikan satu persoalan utama yang berbeza dan saling menyambung makna.</p>
+        </div>
+        <button onclick="navigateTo('theme')" class="text-xs text-slate-400 hover:text-white flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i> Tukar Tema
+        </button>
+      </div>
+
+      <!-- Panduan Persoalan Berdasarkan Mod -->
+      <div id="planner-guidance" class="mb-4 p-3.5 rounded-xl bg-navy-900 border border-slate-800 text-xs sm:text-sm text-slate-300 flex items-start gap-3">
+        <i class="fa-solid fa-lightbulb text-gold-400 text-base mt-0.5"></i>
+        <div>
+          <span class="font-semibold text-white">Petua Membina Persoalan STPM (8 Markah):</span>
+          <p class="text-slate-400 mt-0.5">Pastikan persoalan bermula dengan frasa seperti <span class="text-gold-300 italic">"Kepentingan...", "Tanggungjawab...", "Cabaran...", "Kesan...",</span> atau <span class="text-gold-300 italic">"Harapan..."</span> agar fokus pemikiran rangkap menjadi jelas dan tajam.</p>
+        </div>
+      </div>
+
+      <!-- Kotak 5 Persoalan -->
+      <div class="space-y-3" id="planner-stanzas-container">
+        <!-- Dijana secara dinamik melalui renderPlannerStanzas() -->
+      </div>
+
+      <!-- Bank Persoalan Positif Tambahan untuk Tema Semasa -->
+      <div id="planner-positive-bank-box" class="mt-5 p-4 rounded-xl bg-navy-900/80 border border-emerald-500/30">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+            <i class="fa-solid fa-seedling"></i>
+            <span>Bank Cadangan Persoalan Berorientasikan Nilai Positif (Pilih & Masukkan)</span>
+          </span>
+          <span class="text-[11px] text-slate-400">Klik untuk salin ke rangkap pilihan</span>
+        </div>
+        <p class="text-[11px] text-slate-400 mb-3">Persoalan sajak KMK cemerlang mengangkat amalan mulia, integriti, dan tindakan afirmatif, bukan sekadar meratapi perkara negatif.</p>
+        <div class="flex flex-wrap gap-2" id="planner-positive-chips">
+          <!-- Butang persoalan positif dimasukkan dinamik -->
+        </div>
+      </div>
+
+      <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-800">
+        <div class="text-xs text-slate-400">
+          <i class="fa-solid fa-circle-info text-sky-400 mr-1"></i>
+          Anda boleh menyunting persoalan ini semula pada bila-bila masa.
+        </div>
+        <button onclick="startWritingStanza(1)" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-600 hover:to-amber-600 text-navy-950 font-bold text-sm shadow-md transition flex items-center justify-center gap-2">
+          <span>Mula Menulis: Rangkap 1</span>
+          <i class="fa-solid fa-pen-nib"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- 4. PANDANGAN UTAMA: PEMBIMBING JALIN BARIS DEMI BARIS -->
+    <section id="view-coach" class="view-panel hidden flex flex-col max-w-5xl mx-auto w-full py-2">
+      
+      <!-- Bar Papan Pemantauan & Kemajuan Rangkap -->
+      <div class="bg-navy-900/90 border border-slate-800 rounded-2xl p-4 mb-4 shadow-md">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3 mb-3">
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gold-500/20 text-gold-400 border border-gold-500/30" id="coach-current-mode-tag">Mod A: Pemulihan</span>
+            <h3 class="text-sm sm:text-base font-bold text-white truncate max-w-xs sm:max-w-md" id="coach-active-theme-text">Tema: Jati Diri Generasi Muda</h3>
+          </div>
+
+          <!-- Pemasa Simulasi jika mod simulasi -->
+          <div id="sim-timer-container" class="hidden items-center gap-2 bg-amber-950/40 border border-amber-500/40 px-3 py-1 rounded-lg text-amber-300 text-xs">
+            <i class="fa-regular fa-clock"></i>
+            <span id="sim-timer-display" class="font-mono font-bold">45:00</span>
+            <button onclick="toggleTimer()" id="btn-timer-toggle" class="text-xs underline hover:text-white ml-1">Jeda</button>
+          </div>
+
+          <!-- Ringkasan Kemajuan Baris Keseluruhan -->
+          <div class="flex items-center gap-3 text-xs">
+            <span class="text-slate-400">Kemajuan Keseluruhan:</span>
+            <span class="font-bold text-gold-400 text-sm font-mono" id="total-progress-counter">0 / 35 Baris</span>
+          </div>
+        </div>
+
+        <!-- 5 Tab Rangkap -->
+        <div class="grid grid-cols-5 gap-1.5 sm:gap-2" id="stanzas-tabs-bar">
+          <!-- Butang Rangkap 1 - 5 dijana dinamik -->
+        </div>
+      </div>
+
+      <!-- Grid Bimbingan Baris Semasa -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Bahagian Kiri: Kotak Pembimbing Utama (7/12) -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="bg-navy-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl relative overflow-hidden">
+            
+            <!-- Header Bimbingan Baris -->
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="w-8 h-8 rounded-lg bg-gold-500/20 border border-gold-500/40 text-gold-400 font-bold flex items-center justify-center text-sm font-mono" id="label-baris-number">
+                  B1
+                </span>
+                <div>
+                  <div class="text-[10px] uppercase font-bold text-gold-400 tracking-wider" id="label-jalin-code">J — JUDUL PERSOALAN</div>
+                  <h4 class="text-base font-bold text-white" id="label-baris-title">Memperkenalkan Idea Asas</h4>
+                </div>
+              </div>
+              <!-- Status Baris -->
+              <span id="badge-baris-status" class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-800 text-slate-300 border border-slate-700">
+                Belum Ditulis
+              </span>
+            </div>
+
+            <!-- Persoalan Rangkap Aktif -->
+            <div class="mt-3 p-3 rounded-xl bg-navy-950/70 border border-slate-800/80">
+              <span class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block">Persoalan Rangkap <span id="text-current-stanza-num">1</span>:</span>
+              <p class="text-xs sm:text-sm font-medium text-amber-200 mt-0.5" id="text-current-stanza-question">
+                Kepentingan generasi muda mengenali asal usul dan warisan bangsa.
+              </p>
+              <div class="mt-1.5 pt-1.5 border-t border-slate-800/60 flex items-center gap-1.5 text-[11px] text-emerald-400">
+                <i class="fa-solid fa-feather-pointed"></i>
+                <span class="italic">Petua Puitis: Ungkapkan melalui perlakuan & lambang, elakkan menaip persoalan secara langsung!</span>
+              </div>
+            </div>
+
+            <!-- Soalan Rangsangan Kognitif (Teras Pembimbing) -->
+            <div class="mt-5 space-y-2">
+              <span class="text-xs font-bold text-slate-400 flex items-center gap-1.5">
+                <i class="fa-solid fa-comment-dots text-sky-400"></i>
+                <span>Soalan Pembimbing Untuk Fikiran Anda:</span>
+              </span>
+              <div class="p-4 rounded-xl bg-slate-900/90 border border-sky-500/30 text-white text-base sm:text-lg font-serif italic leading-relaxed" id="coach-prompt-question">
+                "Apakah nilai atau amalan positif yang ingin anda tonjolkan dalam rangkap ini?"
+              </div>
+              <p class="text-xs text-slate-400 italic" id="coach-prompt-subtext">
+                Fikirkan perlakuan nyata atau suasana yang memancarkan nilai murni ini.
+              </p>
+            </div>
+
+            <!-- Ruang Menulis / Merakam Baris (Pilihan: Boleh salin ke kertas atau taip sebagai draf sandaran) -->
+            <div class="mt-5 space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <label for="input-line-text" class="font-semibold text-slate-300 flex items-center gap-1.5">
+                  <i class="fa-solid fa-pencil text-gold-400"></i>
+                  <span>Tulis baris ini di atas kertas anda. (Pilihan: Catat draf di sini)</span>
+                </label>
+                <span class="text-[11px] text-slate-500 italic">Draf disandarkan secara automatik</span>
+              </div>
+              <input type="text" id="input-line-text" placeholder="Tuliskan baris anda di sini sekiranya ingin semakan semantik..." class="w-full px-4 py-2.5 rounded-xl bg-navy-950 border border-slate-700 text-sm text-white focus:border-gold-500 focus:outline-none transition">
+            </div>
+
+            <!-- Tindakan Butang Utama -->
+            <div class="mt-6 flex flex-wrap items-center gap-3 pt-4 border-t border-slate-800">
+              <button onclick="toggleLineCompleted()" id="btn-toggle-completed" class="flex-1 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-900/30 transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-check-circle text-base"></i>
+                <span id="btn-complete-text">SAYA SUDAH TULIS BARIS INI</span>
+              </button>
+
+              <button onclick="requestHelpLevels()" id="btn-request-help" class="py-3 px-4 rounded-xl bg-navy-800 hover:bg-slate-700 text-gold-300 border border-gold-500/30 font-semibold text-sm transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-wand-magic-sparkles text-gold-400"></i>
+                <span>SAYA PERLUKAN BANTUAN</span>
+              </button>
+            </div>
+
+            <!-- Navigasi Langkah Baris -->
+            <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
+              <button onclick="navigateLine(-1)" id="btn-prev-line" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 flex items-center gap-1.5 transition disabled:opacity-30 disabled:pointer-events-none">
+                <i class="fa-solid fa-chevron-left"></i> Baris Sebelumnya
+              </button>
+              <span class="font-mono text-slate-400" id="nav-line-indicator">Baris 1 daripada 7</span>
+              <button onclick="navigateLine(1)" id="btn-next-line" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 flex items-center gap-1.5 transition">
+                Baris Seterusnya <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Petak Bantuan 3 Tahap (Buka apabila ditekan) -->
+          <div id="help-drawer" class="hidden bg-navy-900/90 border border-gold-500/30 rounded-2xl p-5 shadow-lg space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+              <h5 class="text-sm font-bold text-gold-400 flex items-center gap-2">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span>Sistem Bimbingan 3 Tahap</span>
+              </h5>
+              <button onclick="closeHelpDrawer()" class="text-xs text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark"></i> Tutup
+              </button>
+            </div>
+
+            <!-- Tab 3 Tahap -->
+            <div class="flex border-b border-slate-800 text-xs">
+              <button onclick="switchHelpTab(1)" id="tab-help-1" class="flex-1 py-2 font-bold text-gold-400 border-b-2 border-gold-400 transition">Tahap 1: Rangsangan</button>
+              <button onclick="switchHelpTab(2)" id="tab-help-2" class="flex-1 py-2 font-bold text-slate-400 hover:text-slate-200 transition">Tahap 2: Bank Diksi</button>
+              <button onclick="switchHelpTab(3)" id="tab-help-3" class="flex-1 py-2 font-bold text-slate-400 hover:text-slate-200 transition">Tahap 3: Contoh & Huraian</button>
+            </div>
+
+            <!-- Kandungan Tahap 1 -->
+            <div id="content-help-1" class="help-tab-content text-xs sm:text-sm text-slate-300 space-y-2">
+              <span class="font-semibold text-white">Soalan Rangsangan Tambahan:</span>
+              <p id="help-level-1-text" class="p-3 bg-navy-950 rounded-lg border border-slate-800 text-slate-300">
+                Cuba gambarkan perlakuan yang memperlihatkan nilai ini tanpa menyebut perkataan nilai itu sendiri secara terang-terangan.
+              </p>
+            </div>
+
+            <!-- Kandungan Tahap 2 -->
+            <div id="content-help-2" class="help-tab-content hidden text-xs sm:text-sm space-y-2">
+              <span class="font-semibold text-white">Bank Diksi, Lambang & Kata Kunci:</span>
+              <div id="help-level-2-tags" class="flex flex-wrap gap-2 pt-1">
+                <!-- Tags dimasukkan dinamik -->
+              </div>
+              <p class="text-[11px] text-slate-400 italic mt-2">Petua: Pilih satu kata atau lambang sahaja untuk membina keaslian ungkapan anda sendiri.</p>
+            </div>
+
+            <!-- Kandungan Tahap 3 -->
+            <div id="content-help-3" class="help-tab-content hidden text-xs sm:text-sm space-y-3">
+              <div class="p-3 rounded-lg bg-navy-950 border border-slate-800">
+                <span class="text-[10px] uppercase font-bold text-amber-400 block mb-1">Contoh Baris Puitis (Sebagai Rujukan Sahaja):</span>
+                <p id="help-level-3-line" class="font-serif italic text-gold-200 text-sm">"Di tapak tangan tua kutemukan sebutir restu meresap ke darah,"</p>
+              </div>
+              <div class="text-xs text-slate-300">
+                <span class="font-semibold text-slate-200">Ulasan Pengungkapan Secara Tersirat:</span>
+                <p id="help-level-3-desc" class="text-slate-400 mt-1">
+                  Baris ini memaparkan nilai mengenali warisan dan menghormati orang tua melalui gambaran fizikal sentuhan tangan dan restu, bukan ayat karangan langsung seperti "Kita hendaklah mengenali warisan".
+                </p>
+              </div>
+              <div class="p-2.5 rounded-lg bg-amber-950/30 border border-amber-900/50 text-[11px] text-amber-300">
+                <i class="fa-solid fa-triangle-exclamation mr-1"></i>
+                <strong>Ingatan:</strong> Jangan salin contoh bulat-bulat. Hasilkan baris anda sendiri dengan gaya bahasa tersendiri di atas kertas.
+              </div>
+            </div>
+          </div>
+
+          <!-- Kad Pemeriksa Kesinambungan Baris (Self-Check 5 Soalan) -->
+          <div class="bg-navy-900/70 border border-slate-800 rounded-2xl p-4 sm:p-5">
+            <button onclick="toggleContinuityDrawer()" class="w-full flex items-center justify-between text-left">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-link text-gold-400"></i>
+                <span class="text-xs sm:text-sm font-bold text-slate-200">Adakah Baris Saya Berkesinambungan? (Semakan Kendiri)</span>
+              </div>
+              <i id="icon-continuity-arrow" class="fa-solid fa-chevron-down text-xs text-slate-400 transition"></i>
+            </button>
+
+            <div id="continuity-drawer" class="hidden mt-4 pt-3 border-t border-slate-800 space-y-2.5 text-xs">
+              <p class="text-slate-400">Sebelum beralih ke baris seterusnya, tanyakan diri anda 5 soalan ini:</p>
+              <label class="flex items-center gap-2 p-2 rounded-lg bg-navy-950 hover:bg-navy-900 cursor-pointer">
+                <input type="checkbox" class="accent-gold-500 rounded">
+                <span class="text-slate-300">1. Adakah baris ini melambangkan nilai positif yang ingin anda tonjolkan?</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg bg-navy-950 hover:bg-navy-900 cursor-pointer">
+                <input type="checkbox" class="accent-gold-500 rounded">
+                <span class="text-slate-300">2. Adakah ia menyambung atau memperluas maksud baris sebelumnya tanpa berkhutbah secara langsung?</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg bg-navy-950 hover:bg-navy-900 cursor-pointer">
+                <input type="checkbox" class="accent-gold-500 rounded">
+                <span class="text-slate-300">3. Adakah terdapat perkembangan idea, bukan sekadar pengulangan kata?</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg bg-navy-950 hover:bg-navy-900 cursor-pointer">
+                <input type="checkbox" class="accent-gold-500 rounded">
+                <span class="text-slate-300">4. Adakah lambang atau imejan yang digunakan menyokong mesej tema?</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg bg-navy-950 hover:bg-navy-900 cursor-pointer">
+                <input type="checkbox" class="accent-gold-500 rounded">
+                <span class="text-slate-300">5. Adakah baris ini membantu membawa rangkap kepada natijah / penegasan yang matang?</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg bg-navy-950 hover:bg-navy-900 cursor-pointer">
+                <input type="checkbox" class="accent-gold-500 rounded">
+                <span class="text-slate-300">2. Adakah ia menyambung atau memperluas maksud baris sebelumnya?</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg bg-navy-950 hover:bg-navy-900 cursor-pointer">
+                <input type="checkbox" class="accent-gold-500 rounded">
+                <span class="text-slate-300">3. Adakah terdapat perkembangan idea, bukan sekadar pengulangan kata?</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg bg-navy-950 hover:bg-navy-900 cursor-pointer">
+                <input type="checkbox" class="accent-gold-500 rounded">
+                <span class="text-slate-300">4. Adakah lambang atau imejan yang digunakan menyokong mesej tema?</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg bg-navy-950 hover:bg-navy-900 cursor-pointer">
+                <input type="checkbox" class="accent-gold-500 rounded">
+                <span class="text-slate-300">5. Adakah baris ini membantu membawa rangkap kepada natijah / penegasan?</span>
+              </label>
+              
+              <!-- Semakan Semantik Berbantukan Gemini API jika input draf diisi -->
+              <div class="pt-2">
+                <button onclick="requestAiContinuityReview()" id="btn-ai-review" class="w-full py-2 px-3 rounded-lg bg-softpurple-700/40 hover:bg-softpurple-700/60 border border-softpurple-500/40 text-softpurple-100 text-xs font-semibold flex items-center justify-center gap-2 transition">
+                  <i class="fa-solid fa-sparkles text-gold-400"></i>
+                  <span>Semak Kesinambungan Semantik Baris Semasa (Bantuan AI Coach)</span>
+                </button>
+                <div id="ai-review-feedback" class="hidden mt-2 p-3 rounded-lg bg-navy-950 border border-softpurple-500/30 text-xs text-slate-300 leading-relaxed">
+                  <!-- Maklum balas semantik diletakkan di sini -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bahagian Kanan: Papan Tinjauan Rangkap Semasa & Jambatan Idea (5/12) -->
+        <div class="lg:col-span-5 space-y-4">
+          
+          <!-- Paparan 7 Baris Rangkap Semasa -->
+          <div class="bg-navy-900 border border-slate-800 rounded-2xl p-5 shadow-lg">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
+              <div>
+                <span class="text-[10px] uppercase font-bold text-gold-400">Tinjauan Rangkap</span>
+                <h4 class="text-sm font-bold text-white">Rangkap <span id="preview-stanza-index">1</span> (7 Baris JALIN)</h4>
+              </div>
+              <span id="stanza-line-progress-badge" class="px-2 py-0.5 rounded text-xs font-mono font-bold bg-slate-800 text-gold-400 border border-slate-700">
+                0 / 7 Baris
+              </span>
+            </div>
+
+            <!-- Senarai 7 Baris Status -->
+            <div class="space-y-2" id="current-stanza-lines-list">
+              <!-- 7 baris dijana dinamik -->
+            </div>
+
+            <!-- Pengesahan Selesai Rangkap -->
+            <div id="stanza-completion-card" class="mt-4 p-3.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-xs text-emerald-200 hidden">
+              <div class="flex items-start gap-2.5">
+                <i class="fa-solid fa-circle-check text-emerald-400 text-base mt-0.5"></i>
+                <div>
+                  <span class="font-bold">Tahniah! 7 Baris Rangkap Ini Telah Ditanda Selesai.</span>
+                  <p class="text-emerald-300/80 mt-0.5">Pastikan anda telah menyemak kesinambungan bait sebelum membina jambatan idea ke rangkap seterusnya.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kad Jambatan Idea Antara Rangkap -->
+          <div class="bg-gradient-to-b from-navy-900 to-navy-950 border border-slate-800 rounded-2xl p-5 shadow-lg space-y-3">
+            <div class="flex items-center gap-2 text-gold-400 text-xs font-bold uppercase tracking-wider">
+              <i class="fa-solid fa-bridge-water"></i>
+              <span>Sistem Jambatan Antara Rangkap</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed" id="bridge-prompt-text">
+              Anda kini di Rangkap 1 (Mengenali Asal Usul). Apakah warisan yang paling dekat dengan denyut nadi dan pemikiran generasi muda untuk dijadikan persoalan Rangkap 2?
+            </p>
+
+            <div class="p-3 rounded-xl bg-navy-950 border border-slate-800 text-xs space-y-1">
+              <span class="text-slate-400 font-semibold">Persoalan Rangkap Berikutnya:</span>
+              <p class="text-gold-300 font-medium font-serif italic" id="bridge-suggested-next-question">
+                Rangkap 2: Kepentingan memelihara bahasa ibunda sebagai jati diri bangsa.
+              </p>
+            </div>
+
+            <button onclick="goToNextStanzaViaBridge()" id="btn-next-stanza-bridge" class="w-full py-2.5 px-3 rounded-xl bg-navy-800 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-700 transition flex items-center justify-center gap-2">
+              <span>Beralih ke Rangkap Berikutnya</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+
+          <!-- Butang Ke Semakan Penuh / Skema STPM -->
+          <div class="pt-2">
+            <button onclick="navigateTo('review')" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-softpurple-700 to-navy-800 hover:from-softpurple-700/80 hover:to-navy-700 border border-softpurple-500/40 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-clipboard-check text-gold-400"></i>
+              <span>Semak Sajak Lengkap & Skema 25 Markah</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PANDANGAN: SEMAKAN KESELURUHAN & SKEMA PEMARKAHAN STPM 25 MARKAH -->
+    <section id="view-review" class="view-panel hidden flex flex-col max-w-5xl mx-auto w-full py-2">
+      <div class="flex flex-wrap items-center justify-between border-b border-slate-800 pb-4 mb-6 gap-3">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-gold-400">Penilaian Kendiri Berformat Peperiksaan</span>
+          <h2 class="text-2xl font-bold text-white font-display">Semakan Skema STPM (25 Markah)</h2>
+          <p class="text-xs text-slate-400 mt-0.5">Semak hasil penulisan di atas kertas anda berpandukan 4 kriteria utama skema pemarkahan KMK Tingkatan 6.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="navigateTo('coach')" class="px-3 py-2 rounded-xl bg-navy-900 hover:bg-slate-800 border border-slate-700 text-xs text-slate-200 transition flex items-center gap-1.5">
+            <i class="fa-solid fa-arrow-left"></i> Kembali Menulis
+          </button>
+          <button onclick="window.print()" class="px-3 py-2 rounded-xl bg-navy-900 hover:bg-slate-800 border border-slate-700 text-xs text-slate-200 transition flex items-center gap-1.5" title="Cetak Rubrik / Senarai Semak">
+            <i class="fa-solid fa-print"></i> Cetak
+          </button>
+        </div>
+      </div>
+
+      <!-- Ringkasan Anggaran Markah & Peringatan Rasmi -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div class="p-4 rounded-xl bg-navy-900 border border-slate-800 text-center">
+          <span class="text-xs text-slate-400 block">Kreativiti (A)</span>
+          <span class="text-2xl font-bold font-mono text-gold-400 mt-1 block" id="score-kreativiti">0 / 3</span>
+        </div>
+        <div class="p-4 rounded-xl bg-navy-900 border border-slate-800 text-center">
+          <span class="text-xs text-slate-400 block">Persoalan (B)</span>
+          <span class="text-2xl font-bold font-mono text-gold-400 mt-1 block" id="score-persoalan">0 / 8</span>
+        </div>
+        <div class="p-4 rounded-xl bg-navy-900 border border-slate-800 text-center">
+          <span class="text-xs text-slate-400 block">Teknik Penulisan (C)</span>
+          <span class="text-2xl font-bold font-mono text-gold-400 mt-1 block" id="score-teknik">0 / 6</span>
+        </div>
+        <div class="p-4 rounded-xl bg-navy-900 border border-slate-800 text-center">
+          <span class="text-xs text-slate-400 block">Gaya Bahasa (D)</span>
+          <span class="text-2xl font-bold font-mono text-gold-400 mt-1 block" id="score-gaya">0 / 8</span>
+        </div>
+      </div>
+
+      <!-- Peringatan Etika Rubrik -->
+      <div class="p-4 rounded-xl bg-amber-950/30 border border-amber-900/50 text-xs text-amber-200/90 mb-6 flex items-start gap-3">
+        <i class="fa-solid fa-scale-balanced text-amber-400 text-base mt-0.5"></i>
+        <div>
+          <span class="font-bold text-amber-300">Peringatan Penting Penilaian:</span>
+          <p class="mt-0.5">Semua pemarkahan kendiri di bawah ialah anggaran panduan latihan bagi membina disiplin penulisan. Markah rasmi STPM ditentukan sepenuhnya oleh guru pemeriksa berasaskan keutuhan makna, keaslian ungkapan, dan kematangan penghayatan tema.</p>
+        </div>
+      </div>
+
+      <!-- 4 Bahagian Rubrik Skema -->
+      <div class="space-y-6">
+
+        <!-- A. KREATIVITI (3 MARKAH) -->
+        <div class="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <span class="w-6 h-6 rounded bg-gold-500/20 text-gold-400 flex items-center justify-center text-xs font-mono font-bold">A</span>
+              <span>Kreativiti (3 Markah)</span>
+            </h3>
+            <span class="text-xs font-mono text-gold-400" id="rubric-a-subtotal">Subtotal: 0/3</span>
+          </div>
+
+          <div class="space-y-3 text-xs sm:text-sm">
+            <!-- A1: Tajuk -->
+            <div class="p-3 bg-navy-950 rounded-xl border border-slate-800/80 space-y-2">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <span class="font-semibold text-slate-200">A1. Tajuk Sajak Berkaitan Tema (1 Markah)</span>
+                <select id="select-a1-title" onchange="calculateRubricScores()" class="bg-navy-900 border border-slate-700 rounded-lg px-2.5 py-1 text-xs text-white focus:outline-none">
+                  <option value="1">Tajuk Jelas & Relevan (1m)</option>
+                  <option value="0">Tiada Tajuk / Tidak Berkaitan (0m)</option>
+                </select>
+              </div>
+              <input type="text" id="input-final-title" placeholder="Masukkan tajuk sajak anda di sini..." class="w-full px-3 py-1.5 rounded-lg bg-navy-900 border border-slate-700 text-xs text-white">
+            </div>
+
+            <!-- A2: Kesinambungan -->
+            <div class="p-3 bg-navy-950 rounded-xl border border-slate-800/80 space-y-2">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <span class="font-semibold text-slate-200">A2. Kesinambungan Idea Antara Baris & Rangkap (2 Markah)</span>
+                  <p class="text-xs text-slate-400 mt-0.5">Perkembangan pemikiran dari rangkap pengenalan hingga penegasan akhir.</p>
+                </div>
+                <select id="select-a2-continuity" onchange="calculateRubricScores()" class="bg-navy-900 border border-slate-700 rounded-lg px-2.5 py-1 text-xs text-white focus:outline-none">
+                  <option value="2">Jelas & Berkesinambungan (2m)</option>
+                  <option value="1">Kurang Jelas / Terputus-putus (1m)</option>
+                  <option value="0">Tiada Kesinambungan (0m)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- B. PERSOALAN (8 MARKAH) -->
+        <div class="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <h3 class="text-base font-bold text-white flex items-center gap-2">
+                <span class="w-6 h-6 rounded bg-gold-500/20 text-gold-400 flex items-center justify-center text-xs font-mono font-bold">B</span>
+                <span>Persoalan Sajak (8 Markah)</span>
+              </h3>
+              <p class="text-xs text-slate-400">4 Persoalan berbeza x 2 markah setiap satu = 8 markah maksimum.</p>
+            </div>
+            <span class="text-xs font-mono text-gold-400" id="rubric-b-subtotal">Subtotal: 0/8</span>
+          </div>
+
+          <div class="space-y-2.5 text-xs" id="rubric-persoalan-list">
+            <!-- 4 persoalan dinilai kendiri -->
+          </div>
+        </div>
+
+        <!-- C. TEKNIK PENULISAN (6 MARKAH) -->
+        <div class="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <h3 class="text-base font-bold text-white flex items-center gap-2">
+                <span class="w-6 h-6 rounded bg-gold-500/20 text-gold-400 flex items-center justify-center text-xs font-mono font-bold">C</span>
+                <span>Teknik Penulisan (6 Markah)</span>
+              </h3>
+              <p class="text-xs text-slate-400">Diksi puitis (2m), Bilangan baris 30–40 (2m), Bilangan rangkap min 4 (2m).</p>
+            </div>
+            <span class="text-xs font-mono text-gold-400" id="rubric-c-subtotal">Subtotal: 0/6</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+            <!-- C1: Diksi -->
+            <div class="p-3 bg-navy-950 rounded-xl border border-slate-800 space-y-2">
+              <span class="font-semibold text-slate-200 block">C1. Diksi / Pilihan Kata</span>
+              <p class="text-slate-400">Kesesuaian kata bertema puitis.</p>
+              <select id="select-c1-diksi" onchange="calculateRubricScores()" class="w-full bg-navy-900 border border-slate-700 rounded-lg p-2 text-white">
+                <option value="2">5 Kata Bertema ke atas (2m)</option>
+                <option value="1">1–4 Kata Bertema (1m)</option>
+                <option value="0">Tiada diksi khusus (0m)</option>
+              </select>
+            </div>
+
+            <!-- C2: Bilangan Baris -->
+            <div class="p-3 bg-navy-950 rounded-xl border border-slate-800 space-y-2">
+              <span class="font-semibold text-slate-200 block">C2. Bilangan Baris</span>
+              <div class="flex items-center gap-2">
+                <input type="number" id="input-count-lines" value="35" min="1" max="100" onchange="calculateRubricScores()" class="w-16 px-2 py-1 rounded bg-navy-900 border border-slate-700 text-center font-bold text-gold-400">
+                <span class="text-slate-400">baris di kertas</span>
+              </div>
+              <span id="badge-c2-status" class="inline-block text-[10px] px-2 py-0.5 rounded font-semibold bg-emerald-950 text-emerald-400 border border-emerald-800">
+                Memenuhi Syarat 30–40 (2m)
+              </span>
+            </div>
+
+            <!-- C3: Bilangan Rangkap -->
+            <div class="p-3 bg-navy-950 rounded-xl border border-slate-800 space-y-2">
+              <span class="font-semibold text-slate-200 block">C3. Bilangan Rangkap</span>
+              <div class="flex items-center gap-2">
+                <input type="number" id="input-count-stanzas" value="5" min="1" max="10" onchange="calculateRubricScores()" class="w-16 px-2 py-1 rounded bg-navy-900 border border-slate-700 text-center font-bold text-gold-400">
+                <span class="text-slate-400">rangkap lengkap</span>
+              </div>
+              <span id="badge-c3-status" class="inline-block text-[10px] px-2 py-0.5 rounded font-semibold bg-emerald-950 text-emerald-400 border border-emerald-800">
+                Memenuhi Syarat 4 ke atas (2m)
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- D. GAYA BAHASA (8 MARKAH) -->
+        <div class="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <h3 class="text-base font-bold text-white flex items-center gap-2">
+                <span class="w-6 h-6 rounded bg-gold-500/20 text-gold-400 flex items-center justify-center text-xs font-mono font-bold">D</span>
+                <span>Gaya Bahasa (8 Markah)</span>
+              </h3>
+              <p class="text-xs text-slate-400">Wajib 4 JENIS gaya bahasa yang BERLAINAN (bukan 4 kali jenis yang sama). 1 jenis jelas = 2m.</p>
+            </div>
+            <span class="text-xs font-mono text-gold-400" id="rubric-d-subtotal">Subtotal: 0/8</span>
+          </div>
+
+          <!-- Pilihan 4 Gaya Bahasa dengan Kamus Bimbingan -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="rubric-gaya-slots">
+            <!-- 4 Slot Pilihan Gaya Bahasa dimasukkan dinamik -->
+          </div>
+
+          <div class="pt-2 text-right">
+            <button onclick="openModal('modal-kamus-gaya')" class="text-xs text-gold-400 hover:underline inline-flex items-center gap-1.5">
+              <i class="fa-solid fa-book-open"></i> Buka Kamus Lengkap 15 Gaya Bahasa STPM
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Kad Penutup & Rumusan Selesai -->
+      <div class="mt-8 p-6 rounded-2xl bg-gradient-to-r from-navy-900 to-navy-800 border border-gold-500/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-gold-400">Keputusan Latihan</span>
+          <h4 class="text-xl font-bold text-white font-display">Anggaran Markah Kendiri: <span id="final-total-score" class="gold-gradient-text text-2xl font-mono">0 / 25</span></h4>
+          <p class="text-xs text-slate-300 mt-1">Salin sajak anda dengan kemas di atas kertas kajang dan serahkan kepada guru KMK anda untuk ulasan kualitatif muktamad.</p>
+        </div>
+        <button onclick="saveAndFinishSession()" class="px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-sm shadow-lg shadow-gold-500/20 transition flex items-center gap-2">
+          <i class="fa-solid fa-award"></i>
+          <span>Simpan & Lengkapkan Latihan</span>
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="mt-auto border-t border-slate-800/80 bg-navy-950 py-4 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-2 text-slate-400">
+        <i class="fa-solid fa-feather-pointed text-gold-400"></i>
+        <span>JALIN SAJAK COACH STPM &copy; 2026</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <img 
+          src="https://lh3.googleusercontent.com/d/1RiQyIx7QqR14_9wM5Y6sE-bke3OAZOsu" 
+          alt="Foto Pembangun - Nuraidah binti Mustapah" 
+          class="w-10 h-10 rounded-full object-cover border-2 border-gold-500 shadow-md shadow-gold-500/20"
+          onerror="this.onerror=null; this.src='https://placehold.co/80x80/141d38/d4af37?text=NM';"
+        />
+        <p class="text-left">
+          Dibangunkan oleh <strong class="text-slate-300 font-medium">Nuraidah binti Mustapah</strong><br>
+          <span class="text-slate-400 text-[11px]">Guru Akademik Tingkatan 6 — SMK Tamparuli</span>
+        </p>
+      </div>
+      <div class="text-[11px] text-slate-500">
+        Data tersimpan setempat (Browser Local Storage)
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL 1: PANDUAN TEKNIK JALIN ==================== -->
+  <div id="modal-jalin-info" class="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-navy-900 border border-slate-700 rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto custom-scroll">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-8 rounded-lg bg-gold-500/20 text-gold-400 flex items-center justify-center text-base font-bold font-mono">J</span>
+          <h3 class="text-lg font-bold text-white font-display">Konsep & Kerangka Teknik JALIN</h3>
+        </div>
+        <button onclick="closeModal('modal-jalin-info')" class="text-slate-400 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        <strong>Teknik JALIN</strong> ialah kerangka pemikiran metakognitif untuk membimbing pelajar Tingkatan 6 membina baris sajak berkesinambungan tanpa kehilangan arah tema:
+      </p>
+
+      <div class="space-y-3 text-xs sm:text-sm">
+        <div class="p-3 rounded-xl bg-navy-950 border-l-4 border-gold-500">
+          <span class="font-bold text-gold-400">J — Judul Persoalan:</span>
+          <p class="text-slate-300 mt-0.5">Mengenal pasti satu fokus persoalan utama bagi rangkap berkenaan. (cth: Tanggungjawab menghargai bahasa ibunda).</p>
+        </div>
+        <div class="p-3 rounded-xl bg-navy-950 border-l-4 border-sky-500">
+          <span class="font-bold text-sky-400">A — Arah Pemikiran:</span>
+          <p class="text-slate-300 mt-0.5">Menentukan gambaran peristiwa, kelakuan, atau realiti yang ingin diangkat bagi memperluas maksud.</p>
+        </div>
+        <div class="p-3 rounded-xl bg-navy-950 border-l-4 border-purple-500">
+          <span class="font-bold text-purple-400">L — Lambang & Imejan:</span>
+          <p class="text-slate-300 mt-0.5">Memilih simbol puitis (akar, pohon, sungai, kompas, saujana) untuk menyampaikan makna secara tersirat.</p>
+        </div>
+        <div class="p-3 rounded-xl bg-navy-950 border-l-4 border-amber-500">
+          <span class="font-bold text-amber-400">I — Impak / Kesan:</span>
+          <p class="text-slate-300 mt-0.5">Mengembangkan akibat, rasa insaf, getar perasaan, atau kesan positif/negatif daripada lambang tersebut.</p>
+        </div>
+        <div class="p-3 rounded-xl bg-navy-950 border-l-4 border-emerald-500">
+          <span class="font-bold text-emerald-400">N — Natijah:</span>
+          <p class="text-slate-300 mt-0.5">Menghasilkan baris penegasan, kesimpulan falsafah, atau pendirian yang mengunci rangkap dengan utuh.</p>
+        </div>
+      </div>
+
+      <div class="p-3 bg-slate-800/60 rounded-xl text-xs text-slate-400 italic">
+        *JALIN ialah formula pemikiran 5 fasa, yang boleh dimekarkan kepada 7 baris bagi melahirkan bait sajak yang padat dan matang.
+      </div>
+
+      <button onclick="closeModal('modal-jalin-info')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs">
+        Faham & Tutup Panduan
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 2: SKEMA 25 MARKAH INFO ==================== -->
+  <div id="modal-skema-info" class="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-navy-900 border border-slate-700 rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto custom-scroll">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-lg font-bold text-white font-display flex items-center gap-2">
+          <i class="fa-solid fa-award text-amber-400"></i>
+          <span>Skema Pemarkahan Sajak STPM (25 Markah)</span>
+        </h3>
+        <button onclick="closeModal('modal-skema-info')" class="text-slate-400 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs sm:text-sm text-slate-300">
+        <div class="p-3 rounded-xl bg-navy-950 border border-slate-800">
+          <div class="flex justify-between font-bold text-gold-400">
+            <span>A. KREATIVITI</span>
+            <span>3 Markah</span>
+          </div>
+          <ul class="list-disc list-inside mt-1 space-y-0.5 text-slate-400 text-xs">
+            <li>A1. Tajuk yang sesuai dengan tema (1 markah)</li>
+            <li>A2. Kesinambungan idea antara baris & rangkap serta perkembangan pemikiran: Jelas (2m), Kurang Jelas (1m), Tiada (0m)</li>
+          </ul>
+        </div>
+
+        <div class="p-3 rounded-xl bg-navy-950 border border-slate-800">
+          <div class="flex justify-between font-bold text-gold-400">
+            <span>B. PERSOALAN</span>
+            <span>8 Markah</span>
+          </div>
+          <ul class="list-disc list-inside mt-1 space-y-0.5 text-slate-400 text-xs">
+            <li>4 persoalan berbeza yang jelas (1 persoalan jelas = 2 markah)</li>
+            <li>Jelas (2m), Kurang jelas (1m), Lemah/tiada (0m)</li>
+          </ul>
+        </div>
+
+        <div class="p-3 rounded-xl bg-navy-950 border border-slate-800">
+          <div class="flex justify-between font-bold text-gold-400">
+            <span>C. TEKNIK PENULISAN</span>
+            <span>6 Markah</span>
+          </div>
+          <ul class="list-disc list-inside mt-1 space-y-0.5 text-slate-400 text-xs">
+            <li>C1. Diksi / Pemilihan kata sesuai tema: ≥5 kata (2m), 1-4 kata (1m)</li>
+            <li>C2. Bilangan baris: 30 - 40 baris (2m), 1 - 29 baris (1m)</li>
+            <li>C3. Bilangan rangkap: ≥4 rangkap (2m), 1 - 3 rangkap (1m)</li>
+          </ul>
+        </div>
+
+        <div class="p-3 rounded-xl bg-navy-950 border border-slate-800">
+          <div class="flex justify-between font-bold text-gold-400">
+            <span>D. GAYA BAHASA</span>
+            <span>8 Markah</span>
+          </div>
+          <ul class="list-disc list-inside mt-1 space-y-0.5 text-slate-400 text-xs">
+            <li>4 JENIS gaya bahasa yang BERLAINAN (1 jenis jelas = 2 markah)</li>
+            <li>Jelas & berkesan (2m), Kurang sesuai (1m), Tiada (0m)</li>
+          </ul>
+        </div>
+      </div>
+
+      <button onclick="closeModal('modal-skema-info')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs">
+        Tutup
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 3: KAMUS 15 GAYA BAHASA ==================== -->
+  <div id="modal-kamus-gaya" class="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-navy-900 border border-slate-700 rounded-2xl max-w-3xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto custom-scroll">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-lg font-bold text-white font-display flex items-center gap-2">
+          <i class="fa-solid fa-book-bookmark text-gold-400"></i>
+          <span>Kamus 15 Gaya Bahasa Sajak STPM</span>
+        </h3>
+        <button onclick="closeModal('modal-kamus-gaya')" class="text-slate-400 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs" id="kamus-gaya-grid">
+        <!-- Disuntik melalui JS -->
+      </div>
+
+      <button onclick="closeModal('modal-kamus-gaya')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs">
+        Tutup Kamus
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== LOGIK APLIKASI (JAVASCRIPT) ==================== -->
+  <script>
+    /**
+     * JALIN SAJAK COACH STPM
+     * Pembangun: Nuraidah binti Mustapah
+     * Versi Penambahbaikan: Bahasa Sapaan Profesional ("Anda") & Persoalan Afirmatif Positif
+     */
+
+    // --- 1. PANGKALAN DATA TEMA & KANDUNGAN PEDAGOGI BERORIENTASIKAN NILAI POSITIF ---
+    const THEMES_DATA = [
+      {
+        id: 'perpaduan',
+        title: 'Perpaduan Masyarakat Majmuk',
+        desc: 'Membimbing pelajar mengangkat keindahan toleransi, amalan saling menghormati, semangat bekerjasama, dan muafakat murni dalam masyarakat pelbagai kaum.',
+        questions: [
+          'Amalan hidup berjiran secara harmoni dalam kepelbagaian.',
+          'Sikap tolak ansur dan toleransi yang menyatukan jiwa.',
+          'Amalan saling menghormati warisan dan pegangan sesama insan.',
+          'Semangat bekerjasama dan saling melengkapi demi kesejahteraan bersama.',
+          'Amalan bermuafakat dan berpadu tenaga memakmurkan watan.'
+        ],
+        positiveBank: [
+          'Amalan hidup berjiran secara harmoni.',
+          'Sikap toleransi dalam masyarakat pelbagai kaum.',
+          'Amalan hormat-menghormati sesama manusia.',
+          'Semangat bekerjasama dan tolong-menolong.',
+          'Amalan bermuafakat demi kesejahteraan masyarakat.',
+          'Keterbukaan berkongsi rezeki dan kegembiraan.',
+          'Semangat setiakawan merentas jurang perbezaan.',
+          'Kesedaran memelihara keamanan negara bersama-sama.'
+        ],
+        bridges: [
+          'Selepas menonjolkan keharmonian hidup berjiran di Rangkap 1, apakah sikap tolak ansur seharian yang merapatkan lagi jurang perbezaan?',
+          'Selepas menyemai toleransi di Rangkap 2, bagaimanakah amalan saling menghormati pegangan dan budaya memperkukuh ikatan mesra?',
+          'Selepas menghormati perbezaan di Rangkap 3, apakah pula tindakan bekerjasama dan bergotong-royong yang menyatukan kudrat mereka?',
+          'Dari keringat kerjasama di Rangkap 4, bagaimanakah amalan bermuafakat membuahkan sebuah negara yang damai dan makmur?'
+        ],
+        diksi: ['muafakat', 'seia', 'jiran', 'teduh', 'berpimpin', 'harmoni', 'senyuman', 'tangan', 'pohon', 'watan']
+      },
+      {
+        id: 'kesukanan',
+        title: 'Semangat Kesukanan',
+        desc: 'Menghayati nilai kesukanan sejati melalui persaingan sihat, berlapang dada menerima keputusan, mengawal emosi secara matang, dan menjunjung perpaduan.',
+        questions: [
+          'Semangat bersaing secara sihat dan berdisiplin di gelanggang.',
+          'Amalan saling menghormati dan mengiktiraf kehebatan pihak lawan.',
+          'Sikap berlapang dada dan berjiwa besar menerima apa jua keputusan.',
+          'Kebijaksanaan mengawal emosi dan mengutamakan semangat setiakawan.',
+          'Peranan sukan sebagai wahana memupuk integrasi dan perpaduan watan.'
+        ],
+        positiveBank: [
+          'Bersaing secara sihat.',
+          'Tolak ansur atau toleransi di gelanggang.',
+          'Amalan hormat-menghormati lawan dan kawan.',
+          'Bersikap terbuka dan berjiwa besar.',
+          'Pemaaf dan sentiasa berlapang dada.',
+          'Mengawal emosi secara matang.',
+          'Bersangka baik terhadap keputusan pengadil.',
+          'Bekerjasama dan mengutamakan semangat berpasukan.',
+          'Mengamalkan disiplin dan permainan bersih.',
+          'Memupuk perpaduan dan integrasi kaum menerusi sukan.'
+        ],
+        bridges: [
+          'Setelah menggambarkan kesungguhan bersaing secara sihat di Rangkap 1, bagaimanakah atlet menunjukkan rasa hormat kepada lawan sesudah wisel berbunyi?',
+          'Di sebalik rasa hormat di Rangkap 2, apakah sikap berlapang dada dan reda yang dipamerkan tatkala menerima keputusan?',
+          'Selepas berjiwa besar di Rangkap 3, bagaimanakah kematangan mengawal emosi membuktikan ketinggian peribadi seorang olahragawan?',
+          'Dari ketenangan emosi di Rangkap 4, bagaimanakah sukan akhirnya menjulang panji perpaduan dan mengangkat maruah seluruh bangsa?'
+        ],
+        diksi: ['gelanggang', 'keringat', 'tautan', 'lapang dada', 'jabat', 'wisel', 'setiakawan', 'hemah', 'maruah', 'panji']
+      },
+      {
+        id: 'jati-diri',
+        title: 'Jati Diri Generasi Muda',
+        desc: 'Membimbing generasi muda menghargai asal usul, memartabatkan warisan, menuntut ilmu, dan berpegang teguh pada nilai murni.',
+        questions: [
+          'Kepentingan generasi muda mengenali dan menghargai warisan bangsa.',
+          'Tanggungjawab memelihara dan memartabatkan bahasa ibunda.',
+          'Amalan mengakar teguh pada nilai kesantunan dan budi pekerti.',
+          'Keteguhan prinsip dan daya tahan menempuh kemajuan moden.',
+          'Keazaman generasi berilmu memimpin peradaban nusa dengan penuh wibawa.'
+        ],
+        positiveBank: [
+          'Kepentingan mengenali akar warisan bangsa.',
+          'Amalan memartabatkan bahasa ibunda dengan rasa bangga.',
+          'Kesantunan budi dan adab sopan peribadi timur.',
+          'Keteguhan prinsip membina peribadi unggul.',
+          'Keberanian berlapang dada menimba ilmu baharu.',
+          'Kecintaan yang mendalam kepada tanah tumpah darah.',
+          'Semangat gigih menyumbang bakti kepada masyarakat.',
+          'Kematangan berfikir memandu kemajuan negara.'
+        ],
+        bridges: [
+          'Setelah mengukuhkan kecintaan pada warisan di Rangkap 1, apakah wahana bahasa ibunda yang menjadi lidah penyambung peradaban bangsa?',
+          'Selain menjulang bahasa di Rangkap 2, bagaimanakah kesantunan budi pekerti mencorakkan keelokan peribadi anak muda?',
+          'Dengan budi yang luhur di Rangkap 3, bagaimanakah keteguhan prinsip melahirkan generasi yang tidak goyah mendepani kemajuan?',
+          'Berbekalkan prinsip yang teguh di Rangkap 4, bagaimanakah anak muda memimpin watan menuju kejayaan masa depan?'
+        ],
+        diksi: ['akar', 'pusaka', 'pedoman', 'maruah', 'budi', 'pasak', 'bahasa', 'saujana', 'suluh', 'wibawa']
+      },
+      {
+        id: 'pengorbanan-ibu',
+        title: 'Pengorbanan Ibu',
+        desc: 'Menghayati ketulusan kasih sayang, kecekalan mendidik zuriat, dan amalan berbakti membalas jasa bonda.',
+        questions: [
+          'Ketulusan kasih sayang ibu mengasuh zuriat sejak dalam kandungan.',
+          'Kecekalan seorang ibu membanting tulang demi kebajikan keluarga.',
+          'Kelembutan tutur kata dan doa ibu yang menjadi pelindung anak.',
+          'Amalan santun dan ketaatan anak membahagiakan hati bonda.',
+          'Keberkatan hidup insan yang sentiasa berbakti dan memuliakan ibu.'
+        ],
+        positiveBank: [
+          'Ketulusan kasih sayang ibu tanpa syarat.',
+          'Kecekalan ibu menguruskan keperluan anak dengan sabar.',
+          'Kekuatan doa ibu sebagai penyuluh perjalanan hidup.',
+          'Ketaatan dan amalan berbudi kepada ibu bapa.',
+          'Kesedaran menghargai usia emas ibu dengan penuh kasih.',
+          'Kesediaan anak menjadi tongkat kebergantungan ibu.',
+          'Amalan mendoakan kesejahteraan bonda setiap waktu.'
+        ],
+        bridges: [
+          'Kasih suci telah dipancarkan di Rangkap 1. Bagaimanakah kecekalan ibu membimbing langkah anak dengan penuh kesabaran?',
+          'Di sebalik usaha gigih itu di Rangkap 2, apakah bisikan doa tulus ibu yang sentiasa mengiringi perjalanan hidup anak?',
+          'Menatap usia ibu yang kian lanjut di Rangkap 3, apakah amalan berbakti dan mendakap mesra yang wajar ditunaikan oleh anak?',
+          'Dari bakti yang luhur itu, bagaimanakah keberkatan doa ibu melimpahkan kedamaian dalam seluruh kehidupan?'
+        ],
+        diksi: ['kasih', 'dakapan', 'doa', 'restu', 'telapak', 'tulus', 'teduh', 'budi', 'renyai', 'syurga']
+      },
+      {
+        id: 'perjuangan-ilmu',
+        title: 'Perjuangan Menuntut Ilmu',
+        desc: 'Menonjolkan kegigihan menelaah, cinta akan pengetahuan, adab berguru, dan tekad memanfaatkan ilmu demi kemaslahatan ummah.',
+        questions: [
+          'Kesedaran awal bahawa ilmu ialah obor penyuluh jalan kehidupan.',
+          'Kegigihan menelaah dan kesabaran meniti lembaran pengetahuan.',
+          'Adab memuliakan guru dan menghargai setiap titisan nasihat.',
+          'Kemanisan memperoleh kefahaman dan kejernihan akal budi.',
+          'Tekad memanfaatkan ilmu demi kemajuan diri dan kemakmuran watan.'
+        ],
+        positiveBank: [
+          'Kesedaran bahawa ilmu penyuluh masa depan.',
+          'Kegigihan dan disiplin menuntut ilmu.',
+          'Adab sopan menghormati dan mentaati guru.',
+          'Kecintaan membaca dan meneroka rahsia alam.',
+          'Kematangan berfikir berlandaskan kebenaran.',
+          'Kerendahan hati walaupun berilmu tinggi.',
+          'Kesediaan berkongsi pengetahuan dengan masyarakat.'
+        ],
+        bridges: [
+          'Obor kesedaran ilmu telah dinyalakan di Rangkap 1. Bagaimanakah disiplin dan kegigihan menelaah dipamerkan sehari-hari?',
+          'Di samping tekun membaca di Rangkap 2, bagaimanakah adab merendah diri dan menghormati guru menyempurnakan ilmu tersebut?',
+          'Setelah memperoleh kejernihan akal di Rangkap 3, apakah rasa syukur dan ketenangan batin yang dituai?',
+          'Dengan kebijaksanaan yang matang di Rangkap 4, bagaimanakah ilmu itu disumbangkan kembali demi kemaslahatan masyarakat?'
+        ],
+        diksi: ['obor', 'fajar', 'tinta', 'pelita', 'jernih', 'adab', 'pedoman', 'watan', 'kuntum', 'maruah']
+      },
+      {
+        id: 'alam-sekitar',
+        title: 'Kelestarian Alam Sekitar',
+        desc: 'Menghargai keindahan ciptaan Ilahi, amalan memelihara kebersihan, menyayangi flora dan fauna, serta mewariskan bumi yang hijau.',
+        questions: [
+          'Kesyukuran menikmati keindahan dan keharmonian alam semula jadi.',
+          'Tanggungjawab menjaga kebersihan sungai dan kesegaran udara.',
+          'Amalan memelihara hidupan rimba sebagai khazanah warisan.',
+          'Keprihatinan menanam pohon dan menyuburkan bumi bertuah.',
+          'Keazaman mewariskan bumi yang lestari kepada generasi hari esok.'
+        ],
+        positiveBank: [
+          'Kesyukuran menikmati keindahan alam anugerah Ilahi.',
+          'Tanggungjawab memelihara kebersihan persekitaran.',
+          'Amalan menanam pohon menghijaukan bumi.',
+          'Kasih sayang terhadap flora dan fauna.',
+          'Gaya hidup lestari dan menjimatkan sumber alam.',
+          'Kerjasama komuniti menjaga kebersihan taman dan sungai.',
+          'Keazaman mewariskan persekitaran yang sihat kepada anak cucu.'
+        ],
+        bridges: [
+          'Selepas menzahirkan rasa syukur atas keindahan alam di Rangkap 1, apakah tindakan memelihara sungai dan kejernihan air yang wajar diusahakan?',
+          'Bukan sekadar sungai di Rangkap 2, bagaimanakah amalan menyuburkan pepohon hijau dapat menyegarkan nafas rimba pertiwi?',
+          'Melangkah lebih jauh di Rangkap 3, apakah komitmen memelihara hidupan liar agar tidak pupus daripada pandangan?',
+          'Dari usaha pemuliharaan di Rangkap 4, bagaimanakah keazaman generasi kini menjamin sebuah bumi yang lestari buat masa depan?'
+        ],
+        diksi: ['saujana', 'rimba', 'jernih', 'hijau', 'lestari', 'unggas', 'anugerah', 'teduh', 'benih', 'bayu']
+      }
+    ];
+
+    // Kamus 15 Gaya Bahasa STPM
+    const GAYA_BAHASA_DATABASE = [
+      { id: 'asonansi', name: 'Asonansi', def: 'Pengulangan bunyi vokal (a, e, i, o, u) dalam satu baris.', contoh: 'Kembara bangsa menjejak makna (vokal a)', fungsi: 'Menimbulkan irama merdu dan kesan kelembutan pengucapan.' },
+      { id: 'aliterasi', name: 'Aliterasi', def: 'Pengulangan bunyi konsonan dalam satu baris.', contoh: 'Biar basah bumi berpasir (konsonan b)', fungsi: 'Memberikan penegasan ketukan bunyi yang bertenaga.' },
+      { id: 'anafora', name: 'Anafora', def: 'Pengulangan kata pada awal baris secara berurutan.', contoh: 'Di sini kita bertapak,\nDi sini kita berjanji,', fungsi: 'Menegaskan keazaman atau fokus mesej puitis.' },
+      { id: 'epifora', name: 'Epifora', def: 'Pengulangan kata pada akhir baris secara berurutan.', contoh: 'Menanti fajar tiba,\nMendoakan bahagia tiba,', fungsi: 'Mengukuhkan getaran emosi pengharapan di hujung bait.' },
+      { id: 'responsi', name: 'Responsi', def: 'Pengulangan kata di tengah-tengah baris yang berurutan.', contoh: 'Biar teguh kota warisan,\nBiar subur jiwa budiman,', fungsi: 'Membuat keseimbangan pertalian makna di tengah ujaran.' },
+      { id: 'simile', name: 'Simile', def: 'Perbandingan jelas menggunakan kata banding (seperti, bak, ibarat, laksana, umpama).', contoh: 'Teguh jiwanya laksana pasak karang', fungsi: 'Memudahkan pembaca membayangkan sifat teguh melalui kiasan nyata.' },
+      { id: 'personifikasi', name: 'Personifikasi', def: 'Pemberian sifat manusia kepada benda mati atau konsep abstrak.', contoh: 'Bayu fajar berbisik mesra mengusap permatang', fungsi: 'Menghidupkan suasana supaya pembaca merasai kelembutan alam.' },
+      { id: 'metafora', name: 'Metafora', def: 'Perbandingan terus secara kiasan yang menggabungkan kata konkrit dan abstrak.', contoh: 'Lautan muafakat, perisai kesabaran, benih persefahaman', fungsi: 'Melahirkan makna berlapis yang puitis dan mencabar daya fikir.' },
+      { id: 'hiperbola', name: 'Hiperbola', def: 'Perbandingan atau pernyataan yang dibesar-besarkan daripada hakikat sebenar.', contoh: 'Semangatnya membakar hingga ke puncak cakerawala', fungsi: 'Memberikan impak emosi yang amat mendalam dan bertenaga.' },
+      { id: 'paradoks', name: 'Paradoks', def: 'Pernyataan yang kelihatan berlawanan tetapi hakikatnya mengandungi kebenaran.', contoh: 'Di dalam hening sunyi kutemui kedamaian abadi', fungsi: 'Mendorong pembaca merenung hikmah di sebalik ketenangan batin.' },
+      { id: 'repetisi', name: 'Repetisi', def: 'Pengulangan kata, frasa, atau baris dalam satu rangkap.', contoh: 'Keringat, keringat jernih menyubur bakti', fungsi: 'Menggandakan intensiti penegasan mesej mulia.' },
+      { id: 'inversi', name: 'Inversi', def: 'Pembalikan susunan lazim struktur ayat (Predikat mendahului Subjek).', contoh: 'Berdiri kami di laman muafakat (Lazim: Kami berdiri...)', fungsi: 'Menitikberatkan perbuatan dan memvariasikan rentak sajak.' },
+      { id: 'imejan', name: 'Imejan', def: 'Penggunaan kata yang mencetuskan gambaran deria (penglihatan, pendengaran, sentuhan).', contoh: 'Kilau embun di pucuk daun menitis ke telapak tangan', fungsi: 'Membina lukisan minda yang jelas pada imaginasi pembaca.' },
+      { id: 'perlambangan', name: 'Perlambangan', def: 'Penggunaan objek atau benda untuk mewakili idea abstrak.', contoh: 'Taut jemari (muafakat), akar (warisan), payung (perlindungan)', fungsi: 'Menyampaikan falsafah tersirat tanpa menyatakan secara terang-terangan.' },
+      { id: 'citra', name: 'Citra', def: 'Gambaran visual atau suasana menyeluruh yang dibangunkan dalam rangkap.', contoh: 'Citra perkampungan damai yang hidup bergotong-royong', fungsi: 'Membentuk latar atmosfera harmoni sesebuah sajak.' }
+    ];
+
+    // Struktur 7 Baris JALIN: Bimbingan Pengungkapan Puitis Tersirat (Bukan Ayat Karangan Langsung)
+    const JALIN_STEPS = [
+      {
+        step: 1,
+        code: 'J — JUDUL PERSOALAN',
+        title: 'Memperkenalkan Nilai Melalui Perlakuan / Gambaran',
+        soalanA: '"Apakah nilai atau amalan positif yang ingin anda tonjolkan melalui perlakuan atau suasana pembuka?"',
+        subA: 'Elakkan menulis ayat karangan seperti "Kita hendaklah mengamalkan...". Gambarkan perlakuan fizikal, suasana hening, atau kehadiran watak yang sedang mengamalkan nilai tersebut.',
+        soalanB: '"Bagaimanakah anda boleh membuka baris dengan imejan yang terus memancarkan nilai positif tanpa perlu menyebut nama nilai tersebut?"',
+        subB: 'Gunakan kata pembuka yang melukiskan ketenangan, kesediaan diri, atau gerak langkah yang bermaruah.',
+        tahap1: 'Gambarkan situasi di mana dua insan saling berpandangan dengan senyuman atau seseorang sedang menyambut tetangga dengan tangan terbuka.',
+        diksi: ['laman', 'pintu terbuka', 'senyuman', 'langkah', 'mentari fajar', 'menghulur'],
+        contoh: 'Pintu rumah terbuka luas menyambut angin muhibah,',
+        ulasan: 'Menggambarkan nilai keterbukaan dan hidup berjiran melalui perlakuan pintu rumah terbuka luas, bukan menasihati secara langsung.'
+      },
+      {
+        step: 2,
+        code: 'A — ARAH PEMIKIRAN',
+        title: 'Mengembangkan Suasana & Tindakan Murni',
+        soalanA: '"Apakah tindakan, keadaan atau peristiwa yang boleh menjelaskan nilai tersebut secara bersahaja?"',
+        subA: 'Sambung perbuatan tadi. Apakah interaksi yang berlaku? Gambarkan gerak santun, bicara lembut, atau sentuhan mesra.',
+        soalanB: '"Bagaimanakah baris kedua ini memperdalam suasana harmoni dan persefahaman antara watak?"',
+        subB: 'Bina kesinambungan makna dengan memperluas rasa hormat melalui perlakuan yang menyejukkan hati.',
+        tahap1: 'Fikirkan hidangan secawan kopi yang dihulurkan dengan senyuman tulus atau salam yang bersambut.',
+        diksi: ['secawan kopi', 'tutur lembut', 'berkongsi', 'teduh', 'menyapa', 'mesra'],
+        contoh: 'secawan teh dihulur mesra meruntuhkan dinding prasangka,',
+        ulasan: 'Perbuatan menghulur teh menjadi bukti nyata nilai keramahan dan tolak ansur yang menyatukan jiwa.'
+      },
+      {
+        step: 3,
+        code: 'L — MEMBINA LAMBANG',
+        title: 'Menyulam Lambang & Imejan Puitis',
+        soalanA: '"Apakah lambang alam atau objek yang boleh menjadikan ungkapan anda lebih puitis dan indah didengar?"',
+        subA: 'Pilih lambang afirmatif yang segar: dahan rimbun (naungan persaudaraan), tautan jemari (permuafakatan), sungai jernih (hati yang ikhlas), atau pasak akar (keteguhan budi).',
+        soalanB: '"Bagaimanakah anda mencipta metafora positif yang membayangkan kemurnian perpaduan atau integriti?"',
+        subB: 'Pertembungkan objek alam yang meneduhkan dengan konsep budi pekerti untuk memancarkan keaslian gaya.',
+        tahap1: 'Bayangkan pohon beringin yang daun-daunnya saling berpaut menahan tempias hujan demi melindungi tanah di bawahnya.',
+        diksi: ['pohon rimbun', 'taut jemari', 'sungai jernih', 'benih budi', 'permaidani'],
+        contoh: 'laksana jalinan akar yang saling mengikat di dasar bumi,',
+        ulasan: 'Menggunakan perlambangan jalinan akar untuk mewakili kekuatan semangat kerjasama dan persaudaraan teguh.'
+      },
+      {
+        step: 4,
+        code: 'L — MENGEMBANGKAN LAMBANG',
+        title: 'Mengukuhkan Hubungan Lambang dengan Masyarakat',
+        soalanA: '"Apakah manfaat daripada lambang pilihan anda tadi terhadap kehidupan bersama?"',
+        subA: 'Pastikan baris keempat ini mempunyai jalinan makna yang kukuh dengan lambang pada baris ketiga.',
+        soalanB: '"Bagaimanakah lambang tersebut membuktikan bahawa perbezaan itu sebenarnya mengindahkan kehidupan?"',
+        subB: 'Gambarkan bagaimana helai benang pelbagai warna melahirkan tenunan kain songket yang gemilang.',
+        tahap1: 'Tanyakan: Apabila akar saling bertaut, betapa kukuhnya tebing daripada runtuh tatkala arus pasang melanda?',
+        diksi: ['tegak', 'tebing kukuh', 'saujana', 'tenunan', 'indah', 'memayungi'],
+        contoh: 'tebing bangsa tegak berdiri menepis goncangan zaman,',
+        ulasan: 'Menghubungkan lambang akar tadi dengan faedahnya: permuafakatan menjadikan benteng masyarakat kukuh dan stabil.'
+      },
+      {
+        step: 5,
+        code: 'I — MENUNJUKKAN IMPAK',
+        title: 'Menyuarakan Kesan Positif & Getar Batin',
+        soalanA: '"Bagaimanakah tindakan terpuji tersebut memberi kesan positif kepada ketenangan jiwa atau keharmonian komuniti?"',
+        subA: 'Bawa pembaca merasai ketenangan batin, rasa syukur, atau keindahan hidup apabila masing-masing berlapang dada.',
+        soalanB: '"Apakah impak keharmonian ini terhadap wajah peradaban tanah air?"',
+        subB: 'Gambarkan wajah desa atau kota yang makmur kerana setiap warganya memelihara adab kesantunan.',
+        tahap1: 'Bayangkan perasaan lapang di dada apabila tiada rasa curiga, melainkan hanya rasa selamat di bawah payung perpaduan.',
+        diksi: ['kedamaian', 'lapang dada', 'jernih', 'senyuman', 'mekar', 'sentosa'],
+        contoh: 'maka mekar senyuman jernih di setiap penjuru lorong,',
+        ulasan: 'Menunjukkan impak positif melalui gambaran visual senyuman jernih yang memancarkan rasa aman warga.'
+      },
+      {
+        step: 6,
+        code: 'I — MEMPERLUAS PEMIKIRAN',
+        title: 'Menegaskan Keluhuran Budi & Tanggungjawab Bersama',
+        soalanA: '"Bagaimanakah amalan murni ini terus dipelihara sebagai pegangan hidup seharian?"',
+        subA: 'Tunjukkan bahawa keharmonian bukanlah peristiwa sekali lalu, melainkan nafas budi yang berterusan.',
+        soalanB: '"Bagaimanakah nilai ini menjadi perisai kematangan bangsa dalam mengukir masa depan?"',
+        subB: 'Bawa pembaca memikirkan bahawa kemakmuran hakiki berpunca daripada hati yang sentiasa bersangka baik.',
+        tahap1: 'Gambarkan langkah bersama yang tidak pernah lelah menyiram benih perdamaian di bumi bertuah ini.',
+        diksi: ['benih', 'menyiram', 'berpimpin', 'ikrar', 'langkah', 'setia'],
+        contoh: 'kerana di sini kami belajar bahawa perbezaan adalah kuntum pelangi,',
+        ulasan: 'Memperluas pemikiran dengan metafora kuntum pelangi: meraikan kepelbagaian sebagai rahmat keindahan bersama.'
+      },
+      {
+        step: 7,
+        code: 'N — NATIJAH (PENEGASAN)',
+        title: 'Mengunci Rangkap dengan Penegasan Puitis',
+        soalanA: '"Apakah renungan atau penegasan puitis yang dapat menyempurnakan persoalan rangkap ini?"',
+        subA: 'Cipta baris penutup rangkap yang padat, penuh wibawa, dan memancarkan tekad muafakat yang berkekalan.',
+        soalanB: '"Apakah rumusan falsafah yang mengunci bait ini dengan penuh martabat?"',
+        subB: 'Tutup dengan penegasan bahawa kebahagiaan bersama dibina atas dasar saling mengasihi dan berlapang dada.',
+        tahap1: 'Tuliskan ikrar bahawa selagi matahari terbit, tangan ini akan terus berpimpin menjaga keharmonian watan.',
+        diksi: ['berpaut', 'abadi', 'seia sekata', 'bernaung', 'watan', 'muafakat'],
+        contoh: 'yang disatukan oleh rasa kasih di bawah langit yang sama.',
+        ulasan: 'Mengunci rangkap dengan natijah yang syahdu dan utuh: kesatuan hati bernaung di bawah langit pertiwi yang satu.'
+      }
+    ];
+
+    // --- 2. KEADAAN APLIKASI (STATE MANAGEMENT) ---
+    const APP_STATE_KEY = 'JALIN_SAJAK_COACH_STATE_V2';
+
+    let appState = {
+      currentView: 'home',
+      mode: 'pemulihan',
+      themeId: 'perpaduan',
+      customTheme: {
+        title: '',
+        desc: ''
+      },
+      stanzasQuestions: [
+        'Amalan hidup berjiran secara harmoni dalam kepelbagaian.',
+        'Sikap tolak ansur dan toleransi yang menyatukan jiwa.',
+        'Amalan saling menghormati warisan dan pegangan sesama insan.',
+        'Semangat bekerjasama dan saling melengkapi demi kesejahteraan bersama.',
+        'Amalan bermuafakat dan berpadu tenaga memakmurkan watan.'
+      ],
+      currentStanza: 1,
+      currentLine: 1,
+      linesData: Array.from({ length: 5 }, () =>
+        Array.from({ length: 7 }, () => ({ text: '', completed: false }))
+      ),
+      rubricScores: {
+        a1: 1,
+        a2: 2,
+        b: [2, 2, 2, 2],
+        c1: 2,
+        c2: 35,
+        c3: 5,
+        d: [
+          { typeId: 'metafora', score: 2, notes: '' },
+          { typeId: 'personifikasi', score: 2, notes: '' },
+          { typeId: 'asonansi', score: 2, notes: '' },
+          { typeId: 'simile', score: 2, notes: '' }
+        ]
+      },
+      finalTitle: 'Laman Muafakat',
+      simTimerSeconds: 45 * 60,
+      simTimerActive: false
+    };
+
+    let timerInterval = null;
+
+    // --- 3. PEMULAAN & PENYIMPANAN LOCALSTORAGE ---
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSavedState();
+      renderThemeOptions();
+      renderKamusGayaGrid();
+      setupEventListeners();
+      updateGlobalBadges();
+      navigateTo(appState.currentView || 'home');
+    });
+
+    function saveState() {
+      try {
+        localStorage.setItem(APP_STATE_KEY, JSON.stringify(appState));
+      } catch (e) {
+        console.warn('Gagal menyimpan ke LocalStorage:', e);
+      }
+    }
+
+    function loadSavedState() {
+      try {
+        const saved = localStorage.getItem(APP_STATE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          appState = Object.assign(appState, parsed);
+        }
+      } catch (e) {
+        console.warn('Gagal membaca data dari LocalStorage:', e);
+      }
+    }
+
+    function confirmResetProgress() {
+      const modalConfirm = document.createElement('div');
+      modalConfirm.className = 'fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4';
+      modalConfirm.innerHTML = `
+        <div class="bg-navy-900 border border-slate-700 rounded-2xl max-w-sm w-full p-5 shadow-2xl text-center space-y-4">
+          <div class="w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 mx-auto flex items-center justify-center text-xl">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </div>
+          <h4 class="text-base font-bold text-white">Mula Semula Latihan?</h4>
+          <p class="text-xs text-slate-300">Segala kemajuan baris dan catatan semakan anda akan disetkan semula ke nilai asal.</p>
+          <div class="flex gap-2 pt-2">
+            <button id="btn-cancel-reset" class="flex-1 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs text-slate-300">Batal</button>
+            <button id="btn-do-reset" class="flex-1 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-xs font-bold text-white">Ya, Mula Semula</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modalConfirm);
+
+      modalConfirm.querySelector('#btn-cancel-reset').onclick = () => modalConfirm.remove();
+      modalConfirm.querySelector('#btn-do-reset').onclick = () => {
+        localStorage.removeItem(APP_STATE_KEY);
+        location.reload();
+      };
+    }
+
+    // --- 4. SISTEM NAVIGASI PANDANGAN ---
+    function navigateTo(viewId) {
+      document.querySelectorAll('.view-panel').forEach(el => el.classList.add('hidden'));
+      const target = document.getElementById(`view-${viewId}`);
+      if (target) {
+        target.classList.remove('hidden');
+        appState.currentView = viewId;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        saveState();
+
+        if (viewId === 'planner') {
+          renderPlannerStanzas();
+        } else if (viewId === 'coach') {
+          renderCoachView();
+        } else if (viewId === 'review') {
+          renderReviewRubric();
+        }
+      }
+    }
+
+    function selectMode(mode) {
+      appState.mode = mode;
+      updateGlobalBadges();
+      saveState();
+
+      if (mode === 'simulasi') {
+        startSimTimer();
+      } else {
+        stopSimTimer();
+      }
+
+      navigateTo('theme');
+    }
+
+    function updateGlobalBadges() {
+      const badge = document.getElementById('badge-mode');
+      if (!badge) return;
+
+      badge.classList.remove('hidden');
+      if (appState.mode === 'pemulihan') {
+        badge.className = 'px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-sky-950 text-sky-400 border border-sky-800';
+        badge.innerText = 'Mod A: Pemulihan';
+      } else if (appState.mode === 'pengayaan') {
+        badge.className = 'px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-gold-500/20 text-gold-400 border border-gold-500/40';
+        badge.innerText = 'Mod B: Pengayaan';
+      } else {
+        badge.className = 'px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-amber-950 text-amber-300 border border-amber-800';
+        badge.innerText = 'Simulasi STPM';
+      }
+    }
+
+    // --- 5. PENGURUSAN TEMA & BANK PERSOALAN POSITIF ---
+    function renderThemeOptions() {
+      const container = document.getElementById('theme-options-container');
+      if (!container) return;
+
+      container.innerHTML = THEMES_DATA.map(t => `
+        <div onclick="selectTheme('${t.id}')" class="cursor-pointer p-3.5 rounded-xl border transition ${appState.themeId === t.id ? 'bg-gold-500/10 border-gold-500 text-white shadow-md' : 'bg-navy-900/60 border-slate-800 text-slate-300 hover:border-slate-700'}">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-seedling ${appState.themeId === t.id ? 'text-gold-400' : 'text-slate-500'} text-xs"></i>
+            <span class="text-xs sm:text-sm font-bold">${t.title}</span>
+          </div>
+        </div>
+      `).join('');
+
+      updateThemePreview();
+    }
+
+    function selectTheme(themeId) {
+      appState.themeId = themeId;
+      toggleCustomTheme(false);
+      const chosen = THEMES_DATA.find(t => t.id === themeId);
+      if (chosen) {
+        appState.stanzasQuestions = [...chosen.questions];
+      }
+      renderThemeOptions();
+      updateThemePreview();
+      saveState();
+    }
+
+    function toggleCustomTheme(isCustom) {
+      const customInputs = document.getElementById('custom-theme-inputs');
+      const radioCustom = document.getElementById('radio-custom-theme');
+      if (isCustom) {
+        radioCustom.checked = true;
+        customInputs.classList.remove('hidden');
+        appState.themeId = 'custom';
+        document.getElementById('preview-theme-title').innerText = appState.customTheme.title || 'Tema Sendiri';
+        document.getElementById('preview-theme-desc').innerText = appState.customTheme.desc || 'Sila masukkan arahan kehendak soalan anda.';
+      } else {
+        radioCustom.checked = false;
+        customInputs.classList.add('hidden');
+      }
+      renderThemeOptions();
+    }
+
+    function updateThemePreview() {
+      const previewTitle = document.getElementById('preview-theme-title');
+      const previewDesc = document.getElementById('preview-theme-desc');
+      if (appState.themeId === 'custom') {
+        previewTitle.innerText = appState.customTheme.title || 'Tema Sendiri';
+        previewDesc.innerText = appState.customTheme.desc || 'Sila masukkan arahan kehendak soalan anda di sebelah.';
+      } else {
+        const t = THEMES_DATA.find(item => item.id === appState.themeId) || THEMES_DATA[0];
+        previewTitle.innerText = t.title;
+        previewDesc.innerText = t.desc;
+      }
+    }
+
+    function confirmThemeAndProceed() {
+      if (appState.themeId === 'custom') {
+        const titleVal = document.getElementById('input-custom-theme').value.trim();
+        const descVal = document.getElementById('input-custom-desc').value.trim();
+        if (!titleVal) {
+          showFloatingToast('Sila masukkan tajuk tema sendiri anda.');
+          return;
+        }
+        appState.customTheme.title = titleVal;
+        appState.customTheme.desc = descVal || 'Bina sajak 5 rangkap yang membahaskan nilai positif tema ini.';
+        if (!appState.stanzasQuestions || appState.stanzasQuestions.length < 5) {
+          appState.stanzasQuestions = [
+            `Amalan murni menghayati nilai mulia dalam ${titleVal}.`,
+            `Sikap tolak ansur dan kebijaksanaan menghadapi dugaan hidup.`,
+            `Tanggungjawab saling menghormati dan menyokong sesama insan.`,
+            `Semangat bekerjasama memupuk keharmonian masyarakat.`,
+            `Natijah permuafakat yang membawa kemakmuran kepada watan.`
+          ];
+        }
+      }
+      saveState();
+      navigateTo('planner');
+    }
+
+    // --- 6. PERANCANG PERSOALAN SAJAK DENGAN BANK POSITIF ---
+    function renderPlannerStanzas() {
+      const container = document.getElementById('planner-stanzas-container');
+      if (!container) return;
+
+      container.innerHTML = appState.stanzasQuestions.map((q, idx) => `
+        <div class="p-4 rounded-xl bg-navy-900 border border-slate-800 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-gold-400">
+              Rangkap ${idx + 1}
+            </span>
+            <span class="text-[11px] text-slate-500 font-mono">Fokus Nilai JALIN R${idx + 1}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-slate-400 font-serif italic text-sm">${idx + 1}.</span>
+            <input type="text" id="planner-input-${idx}" value="${escapeHtml(q)}" onchange="updatePlannerQuestion(${idx}, this.value)" class="w-full px-3 py-2 rounded-lg bg-navy-950 border border-slate-700 text-xs sm:text-sm text-amber-200 font-medium focus:border-gold-500 focus:outline-none transition">
+          </div>
+        </div>
+      `).join('');
+
+      renderPositiveBankChips();
+    }
+
+    function renderPositiveBankChips() {
+      const chipsContainer = document.getElementById('planner-positive-chips');
+      if (!chipsContainer) return;
+
+      const currentThemeObj = THEMES_DATA.find(t => t.id === appState.themeId);
+      const bank = currentThemeObj ? currentThemeObj.positiveBank : [
+        'Amalan hormat-menghormati.',
+        'Sikap tolak ansur dan bertolak ansur.',
+        'Semangat bekerjasama dan setiakawan.',
+        'Kematangan mengawal emosi dan berlapang dada.',
+        'Kecintaan kepada tanah air dan budaya bangsa.'
+      ];
+
+      chipsContainer.innerHTML = bank.map((item, i) => `
+        <button onclick="applyBankQuestionToFirstAvailable('${escapeHtml(item)}')" class="px-3 py-1.5 rounded-lg bg-navy-950 hover:bg-slate-800 border border-slate-700 text-xs text-emerald-300 transition text-left flex items-center gap-1.5 group">
+          <i class="fa-solid fa-plus text-emerald-500 group-hover:scale-125 transition"></i>
+          <span>${item}</span>
+        </button>
+      `).join('');
+    }
+
+    function applyBankQuestionToFirstAvailable(qText) {
+      // Masukkan ke mana-mana slot rangkap yang ingin ditukar (atau tanya pengguna)
+      const targetIndex = prompt('Pilih nombor rangkap untuk menggunakan cadangan ini (1 - 5):', '1');
+      const idx = parseInt(targetIndex, 10) - 1;
+      if (idx >= 0 && idx < 5) {
+        appState.stanzasQuestions[idx] = qText;
+        const inputEl = document.getElementById(`planner-input-${idx}`);
+        if (inputEl) inputEl.value = qText;
+        saveState();
+        showFloatingToast(`Persoalan positif telah dimasukkan ke Rangkap ${idx + 1}.`);
+      }
+    }
+
+    function updatePlannerQuestion(index, value) {
+      appState.stanzasQuestions[index] = value;
+      saveState();
+    }
+
+    function startWritingStanza(stanzaNum) {
+      appState.currentStanza = stanzaNum;
+      appState.currentLine = 1;
+      saveState();
+      navigateTo('coach');
+    }
+
+    // --- 7. PEMBIMBING JALIN BARIS DEMI BARIS (LOGIK TERAS) ---
+    function renderCoachView() {
+      const sIdx = appState.currentStanza - 1;
+      const lIdx = appState.currentLine - 1;
+      const stepData = JALIN_STEPS[lIdx];
+      const stanzaQuestion = appState.stanzasQuestions[sIdx] || 'Persoalan belum ditentukan.';
+      const currentThemeObj = THEMES_DATA.find(t => t.id === appState.themeId);
+      const themeTitle = appState.themeId === 'custom' ? appState.customTheme.title : (currentThemeObj ? currentThemeObj.title : 'Tema Bebas');
+
+      // 1. Tag & Tajuk Header
+      document.getElementById('coach-current-mode-tag').innerText =
+        appState.mode === 'pemulihan' ? 'Mod A: Pemulihan' :
+        appState.mode === 'pengayaan' ? 'Mod B: Pengayaan' : 'Simulasi STPM';
+      document.getElementById('coach-active-theme-text').innerText = `Tema: ${themeTitle}`;
+      
+      // 2. Bar Tab 5 Rangkap
+      renderStanzaTabsBar();
+
+      // 3. Maklumat Baris Semasa
+      document.getElementById('label-baris-number').innerText = `B${appState.currentLine}`;
+      document.getElementById('label-jalin-code').innerText = stepData.code;
+      document.getElementById('label-baris-title').innerText = stepData.title;
+      document.getElementById('text-current-stanza-num').innerText = appState.currentStanza;
+      document.getElementById('text-current-stanza-question').innerText = stanzaQuestion;
+
+      // Status Baris
+      const lineStatusBadge = document.getElementById('badge-baris-status');
+      const isCompleted = appState.linesData[sIdx][lIdx].completed;
+      if (isCompleted) {
+        lineStatusBadge.className = 'px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-950 text-emerald-400 border border-emerald-800';
+        lineStatusBadge.innerText = 'Sudah Ditulis';
+      } else {
+        lineStatusBadge.className = 'px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-800 text-slate-300 border border-slate-700';
+        lineStatusBadge.innerText = 'Belum Ditulis';
+      }
+
+      // Butang Tandakan Selesai
+      const btnComplete = document.getElementById('btn-toggle-completed');
+      const btnCompleteText = document.getElementById('btn-complete-text');
+      if (isCompleted) {
+        btnComplete.className = 'flex-1 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-sm border border-slate-700 transition flex items-center justify-center gap-2';
+        btnCompleteText.innerText = 'TANDA SEBAGAI BELUM TULIS';
+      } else {
+        btnComplete.className = 'flex-1 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-900/30 transition flex items-center justify-center gap-2';
+        btnCompleteText.innerText = 'SAYA SUDAH TULIS BARIS INI';
+      }
+
+      // 4. Soalan Rangsangan (Bahasa Sapaan "Anda" & Fokus Pengungkapan Puitis Tersirat)
+      const promptQuestionEl = document.getElementById('coach-prompt-question');
+      const promptSubtextEl = document.getElementById('coach-prompt-subtext');
+      if (appState.mode === 'pemulihan') {
+        promptQuestionEl.innerText = stepData.soalanA;
+        promptSubtextEl.innerText = stepData.subA;
+      } else if (appState.mode === 'pengayaan') {
+        promptQuestionEl.innerText = stepData.soalanB;
+        promptSubtextEl.innerText = stepData.subB;
+      } else {
+        // Simulasi
+        promptQuestionEl.innerText = `"Bina baris ${appState.currentLine} berteraskan prinsip: ${stepData.code}"`;
+        promptSubtextEl.innerText = 'Mod Simulasi: Sila gunakan kreativiti mandiri anda tanpa bantuan rangsangan diksi.';
+      }
+
+      // 5. Input Draf Baris
+      const inputDraft = document.getElementById('input-line-text');
+      inputDraft.value = appState.linesData[sIdx][lIdx].text || '';
+      inputDraft.oninput = (e) => {
+        appState.linesData[sIdx][lIdx].text = e.target.value;
+        saveState();
+      };
+
+      // 6. Indikator Navigasi Bawah
+      document.getElementById('nav-line-indicator').innerText = `Baris ${appState.currentLine} daripada 7 (Rangkap ${appState.currentStanza})`;
+      document.getElementById('btn-prev-line').disabled = (appState.currentStanza === 1 && appState.currentLine === 1);
+
+      closeHelpDrawer();
+      document.getElementById('ai-review-feedback').classList.add('hidden');
+
+      // 7. Render Tinjauan 7 Baris Rangkap Semasa & Jambatan
+      renderCurrentStanzaLinesList();
+      updateTotalProgressCounter();
+      renderBridgeSection();
+    }
+
+    function renderStanzaTabsBar() {
+      const container = document.getElementById('stanzas-tabs-bar');
+      if (!container) return;
+
+      container.innerHTML = [1, 2, 3, 4, 5].map(num => {
+        const sIdx = num - 1;
+        const completedLines = appState.linesData[sIdx].filter(l => l.completed).length;
+        const isActive = appState.currentStanza === num;
+        return `
+          <button onclick="switchStanza(${num})" class="p-2 sm:p-2.5 rounded-xl border text-left transition flex flex-col justify-between ${isActive ? 'bg-gold-500/10 border-gold-500 text-white shadow-sm' : 'bg-navy-950 border-slate-800 text-slate-400 hover:border-slate-700'}">
+            <div class="flex items-center justify-between w-full">
+              <span class="text-[10px] sm:text-xs font-bold uppercase ${isActive ? 'text-gold-400' : 'text-slate-400'}">R${num}</span>
+              ${completedLines === 7 ? '<i class="fa-solid fa-check-double text-emerald-400 text-[10px]"></i>' : ''}
+            </div>
+            <div class="text-[10px] font-mono mt-1 ${completedLines > 0 ? 'text-amber-300' : 'text-slate-500'}">
+              ${completedLines}/7 B
+            </div>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function switchStanza(stanzaNum) {
+      appState.currentStanza = stanzaNum;
+      appState.currentLine = 1;
+      saveState();
+      renderCoachView();
+    }
+
+    function navigateLine(direction) {
+      let newLine = appState.currentLine + direction;
+      if (newLine < 1) {
+        if (appState.currentStanza > 1) {
+          appState.currentStanza -= 1;
+          appState.currentLine = 7;
+        } else {
+          return;
+        }
+      } else if (newLine > 7) {
+        if (appState.currentStanza < 5) {
+          appState.currentStanza += 1;
+          appState.currentLine = 1;
+        } else {
+          showFloatingToast('Tahniah! Anda telah sampai ke baris terakhir (Baris 35). Sila semak sajak lengkap anda.');
+          navigateTo('review');
+          return;
+        }
+      } else {
+        appState.currentLine = newLine;
+      }
+      saveState();
+      renderCoachView();
+    }
+
+    function toggleLineCompleted() {
+      const sIdx = appState.currentStanza - 1;
+      const lIdx = appState.currentLine - 1;
+      const currentVal = appState.linesData[sIdx][lIdx].completed;
+      appState.linesData[sIdx][lIdx].completed = !currentVal;
+      saveState();
+      renderCoachView();
+
+      if (!currentVal && appState.currentLine < 7) {
+        showFloatingToast(`Baris ${appState.currentLine} selesai ditanda di atas kertas.`);
+      }
+    }
+
+    function renderCurrentStanzaLinesList() {
+      const container = document.getElementById('current-stanza-lines-list');
+      const sIdx = appState.currentStanza - 1;
+      document.getElementById('preview-stanza-index').innerText = appState.currentStanza;
+
+      const completedCount = appState.linesData[sIdx].filter(l => l.completed).length;
+      document.getElementById('stanza-line-progress-badge').innerText = `${completedCount} / 7 Baris`;
+
+      container.innerHTML = JALIN_STEPS.map((step, idx) => {
+        const item = appState.linesData[sIdx][idx];
+        const isCurrentActive = (idx + 1) === appState.currentLine;
+        return `
+          <div onclick="jumpToLine(${idx + 1})" class="cursor-pointer p-2 rounded-lg border text-xs flex items-center justify-between transition ${isCurrentActive ? 'bg-gold-500/10 border-gold-500/60 text-white' : 'bg-navy-950/70 border-slate-800/80 text-slate-300 hover:border-slate-700'}">
+            <div class="flex items-center gap-2 truncate pr-2">
+              <span class="w-5 h-5 rounded font-mono font-bold flex items-center justify-center text-[10px] ${item.completed ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-slate-800 text-slate-400'}">
+                ${idx + 1}
+              </span>
+              <div class="truncate">
+                <span class="text-[10px] text-gold-400 font-semibold block">${step.code.split('—')[0].trim()}</span>
+                <span class="font-serif italic text-slate-300 truncate block text-[11px]">${item.text ? escapeHtml(item.text) : step.title}</span>
+              </div>
+            </div>
+            <div>
+              ${item.completed ? '<i class="fa-solid fa-check text-emerald-400 text-xs"></i>' : '<i class="fa-regular fa-circle text-slate-600 text-[10px]"></i>'}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const completionCard = document.getElementById('stanza-completion-card');
+      if (completedCount === 7) {
+        completionCard.classList.remove('hidden');
+      } else {
+        completionCard.classList.add('hidden');
+      }
+    }
+
+    function jumpToLine(lineNum) {
+      appState.currentLine = lineNum;
+      saveState();
+      renderCoachView();
+    }
+
+    function updateTotalProgressCounter() {
+      let total = 0;
+      appState.linesData.forEach(stanza => {
+        stanza.forEach(line => {
+          if (line.completed) total++;
+        });
+      });
+      const el = document.getElementById('total-progress-counter');
+      if (el) el.innerText = `${total} / 35 Baris`;
+      appState.rubricScores.c2 = Math.max(total, 30);
+    }
+
+    // --- 8. SISTEM PETUNJUK 3 TAHAP ---
+    function requestHelpLevels() {
+      if (appState.mode === 'simulasi') {
+        showFloatingToast('Peringatan: Mod Simulasi menyembunyikan bank kata & bantuan untuk menguji ketahanan minda peperiksaan anda.');
+        return;
+      }
+      const drawer = document.getElementById('help-drawer');
+      drawer.classList.remove('hidden');
+      switchHelpTab(1);
+    }
+
+    function closeHelpDrawer() {
+      const drawer = document.getElementById('help-drawer');
+      if (drawer) drawer.classList.add('hidden');
+    }
+
+    function switchHelpTab(tabNum) {
+      const lIdx = appState.currentLine - 1;
+      const stepData = JALIN_STEPS[lIdx];
+
+      for (let i = 1; i <= 3; i++) {
+        const btn = document.getElementById(`tab-help-${i}`);
+        const content = document.getElementById(`content-help-${i}`);
+        if (i === tabNum) {
+          btn.className = 'flex-1 py-2 font-bold text-gold-400 border-b-2 border-gold-400 transition';
+          content.classList.remove('hidden');
+        } else {
+          btn.className = 'flex-1 py-2 font-bold text-slate-400 hover:text-slate-200 transition';
+          content.classList.add('hidden');
+        }
+      }
+
+      document.getElementById('help-level-1-text').innerText = stepData.tahap1;
+      
+      const tagsContainer = document.getElementById('help-level-2-tags');
+      tagsContainer.innerHTML = stepData.diksi.map(w => `
+        <span class="px-2.5 py-1 rounded-full bg-navy-900 border border-slate-700 text-gold-300 font-mono text-xs">
+          #${w}
+        </span>
+      `).join('');
+
+      document.getElementById('help-level-3-line').innerText = `"${stepData.contoh}"`;
+      document.getElementById('help-level-3-desc').innerText = stepData.ulasan;
+    }
+
+    // --- 9. SISTEM JAMBATAN ANTARA RANGKAP BERKESINAMBUNGAN ---
+    function renderBridgeSection() {
+      const sIdx = appState.currentStanza - 1;
+      const currentThemeObj = THEMES_DATA.find(t => t.id === appState.themeId);
+      const bridgeTextEl = document.getElementById('bridge-prompt-text');
+      const bridgeNextQEl = document.getElementById('bridge-suggested-next-question');
+      const nextBtn = document.getElementById('btn-next-stanza-bridge');
+
+      if (appState.currentStanza >= 5) {
+        bridgeTextEl.innerText = 'Anda kini berada di Rangkap 5 (Penutup & Penegasan Akhir). Pastikan bait akhir mengunci wacana sajak secara tuntas sebelum anda beralih ke semakan penuh 25 markah.';
+        bridgeNextQEl.innerText = 'Selesai: Menuju Semakan Skema STPM 25 Markah.';
+        nextBtn.innerHTML = `<span>Terus ke Semakan Sajak Lengkap</span> <i class="fa-solid fa-arrow-right"></i>`;
+        nextBtn.onclick = () => navigateTo('review');
+        return;
+      }
+
+      const nextStanzaNum = appState.currentStanza + 1;
+      const nextQ = appState.stanzasQuestions[sIdx + 1] || 'Persoalan seterusnya.';
+      
+      let bridgePrompt = '';
+      if (currentThemeObj && currentThemeObj.bridges && currentThemeObj.bridges[sIdx]) {
+        bridgePrompt = currentThemeObj.bridges[sIdx];
+      } else {
+        bridgePrompt = `Setelah menuntaskan nilai positif Rangkap ${appState.currentStanza}, bagaimanakah idea ini berkembang dan menyambung kebaikan untuk Rangkap ${nextStanzaNum}?`;
+      }
+
+      bridgeTextEl.innerText = bridgePrompt;
+      bridgeNextQEl.innerText = `Rangkap ${nextStanzaNum}: ${nextQ}`;
+      nextBtn.innerHTML = `<span>Beralih ke Rangkap ${nextStanzaNum} Melalui Jambatan</span> <i class="fa-solid fa-arrow-right"></i>`;
+      nextBtn.onclick = () => goToNextStanzaViaBridge();
+    }
+
+    function goToNextStanzaViaBridge() {
+      if (appState.currentStanza < 5) {
+        appState.currentStanza += 1;
+        appState.currentLine = 1;
+        saveState();
+        renderCoachView();
+        showFloatingToast(`Selamat datang ke Rangkap ${appState.currentStanza}. Teruskan kesinambungan makna puitis anda!`);
+      } else {
+        navigateTo('review');
+      }
+    }
+
+    // --- 10. PEMERIKSA KESINAMBUNGAN & MAKLUM BALAS SEMANTIK AI ---
+    function toggleContinuityDrawer() {
+      const drawer = document.getElementById('continuity-drawer');
+      const icon = document.getElementById('icon-continuity-arrow');
+      drawer.classList.toggle('hidden');
+      icon.classList.toggle('rotate-180');
+    }
+
+    async function requestAiContinuityReview() {
+      const sIdx = appState.currentStanza - 1;
+      const lIdx = appState.currentLine - 1;
+      const userText = appState.linesData[sIdx][lIdx].text.trim();
+      const feedbackEl = document.getElementById('ai-review-feedback');
+      const btnAi = document.getElementById('btn-ai-review');
+
+      if (!userText) {
+        showFloatingToast('Sila catatkan draf baris sajak anda di kotak sebelum meminta analisis semantik.');
+        return;
+      }
+
+      const currentStep = JALIN_STEPS[lIdx];
+      const stanzaQuestion = appState.stanzasQuestions[sIdx];
+      const prevLineText = lIdx > 0 ? appState.linesData[sIdx][lIdx - 1].text : '(Baris pembuka rangkap)';
+
+      feedbackEl.classList.remove('hidden');
+      feedbackEl.innerHTML = `
+        <div class="flex items-center gap-2 text-gold-400">
+          <i class="fa-solid fa-spinner fa-spin"></i>
+          <span>Menganalisis pertautan makna baris anda...</span>
+        </div>
+      `;
+      btnAi.disabled = true;
+
+      try {
+        const prompt = `
+          Anda ialah Guru Pakar Kesusasteraan Melayu Komunikatif (KMK) STPM.
+          Analisis draf satu baris sajak pelajar berikut secara pedagogi kognitif:
+          - Tema Sajak: ${appState.themeId}
+          - Persoalan Positif Rangkap: "${stanzaQuestion}"
+          - Baris Sebelumnya: "${prevLineText}"
+          - Baris Semasa Pelajar: "${userText}"
+          - Peringkat JALIN: ${currentStep.code} (${currentStep.title})
+
+          Pastikan analisis anda membimbing pelajar mengelakkan "khutbah langsung" (ayat karangan) dan menukarnya kepada "pengungkapan puitis melalui perlakuan/lambang".
+          Gunakan kata sapaan "anda" kepada pelajar. Berikan respons pendek (maksimum 3 perenggan ringkas):
+          1. KEKUATAN: Bahagian baris yang mempunyai pertautan makna dan keindahan puitis.
+          2. ASPEK BOLEH DIPERTINGKAT: Adakah baris ini terlalu langsung seperti nasihat karangan, atau sudah cukup tersirat dengan lambang?
+          3. SOALAN PEMIKIRAN: Satu soalan rangsangan untuk pelajar memikirkan sendiri penambahbaikan di atas kertas (JANGAN cipta keseluruhan baris baharu secara automatik).
+        `;
+
+        const apiKey = "";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            systemInstruction: {
+              parts: [{ text: "Anda pembimbing sajak STPM profesional yang sentiasa menggunakan kata sapaan 'anda', berfokuskan nilai positif, dan membimbing pelajar berfikir sendiri." }]
+            }
+          })
+        });
+
+        const data = await response.json();
+        const candidate = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (candidate) {
+          feedbackEl.innerHTML = `
+            <div class="space-y-2 text-slate-200">
+              <div class="flex items-center gap-1.5 text-gold-400 font-bold border-b border-slate-800 pb-1">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Maklum Balas Semantik Guru Pembimbing:</span>
+              </div>
+              <div class="prose prose-invert text-xs leading-relaxed">
+                ${candidate.replace(/\n/g, '<br>')}
+              </div>
+            </div>
+          `;
+        } else {
+          throw new Error('Respon tidak mengandungi teks');
+        }
+      } catch (err) {
+        feedbackEl.innerHTML = `
+          <div class="space-y-2 text-slate-200">
+            <span class="font-bold text-amber-300 flex items-center gap-1.5">
+              <i class="fa-solid fa-clipboard-check"></i> Semakan Logik Dalaman:
+            </span>
+            <p class="text-xs text-slate-300">
+              Baris anda: <em>"${escapeHtml(userText)}"</em> telah dinilai dari segi keselarasan prinsip JALIN.
+            </p>
+            <ul class="list-disc list-inside text-xs text-slate-400 space-y-1">
+              <li>Hubungan Persoalan: Pastikan baris ini menggambarkan nilai <strong class="text-slate-200">${escapeHtml(stanzaQuestion)}</strong> melalui perlakuan atau suasana, bukan ayat karangan langsung.</li>
+              <li>Peringkat JALIN: Anda berada di fasa <strong class="text-gold-400">${currentStep.code}</strong>.</li>
+              <li>Refleksi Anda: Adakah ungkapan ini meminjam lambang yang menyejukkan jiwa atau masih mengulangi frasa nasihat umum?</li>
+            </ul>
+          </div>
+        `;
+      } finally {
+        btnAi.disabled = false;
+      }
+    }
+
+    // --- 11. MOD SIMULASI & PEMASA PEPERIKSAAN ---
+    function startSimTimer() {
+      document.getElementById('sim-timer-container').classList.remove('hidden');
+      document.getElementById('sim-timer-container').classList.add('flex');
+      if (timerInterval) clearInterval(timerInterval);
+
+      appState.simTimerActive = true;
+      timerInterval = setInterval(() => {
+        if (appState.simTimerActive && appState.simTimerSeconds > 0) {
+          appState.simTimerSeconds--;
+          updateTimerDisplay();
+        } else if (appState.simTimerSeconds <= 0) {
+          clearInterval(timerInterval);
+          showFloatingToast('Masa Simulasi Peperiksaan anda telah tamat! Sila buat semakan akhir di skema.');
+        }
+      }, 1000);
+      updateTimerDisplay();
+    }
+
+    function stopSimTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      document.getElementById('sim-timer-container').classList.add('hidden');
+      document.getElementById('sim-timer-container').classList.remove('flex');
+      appState.simTimerActive = false;
+    }
+
+    function toggleTimer() {
+      appState.simTimerActive = !appState.simTimerActive;
+      document.getElementById('btn-timer-toggle').innerText = appState.simTimerActive ? 'Jeda' : 'Sambung';
+    }
+
+    function updateTimerDisplay() {
+      const mins = Math.floor(appState.simTimerSeconds / 60);
+      const secs = appState.simTimerSeconds % 60;
+      const display = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      const el = document.getElementById('sim-timer-display');
+      if (el) el.innerText = display;
+    }
+
+    // --- 12. PANDUAN SEMAKAN SKEMA STPM 25 MARKAH ---
+    function renderReviewRubric() {
+      document.getElementById('input-final-title').value = appState.finalTitle || '';
+      document.getElementById('input-final-title').oninput = (e) => {
+        appState.finalTitle = e.target.value;
+        saveState();
+      };
+
+      const persoalanContainer = document.getElementById('rubric-persoalan-list');
+      persoalanContainer.innerHTML = [0, 1, 2, 3].map(i => {
+        const qText = appState.stanzasQuestions[i] || `Persoalan Positif ${i + 1}`;
+        const currentScore = appState.rubricScores.b[i] ?? 2;
+        return `
+          <div class="p-3 bg-navy-950 rounded-xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div class="pr-2">
+              <span class="text-[10px] uppercase font-bold text-gold-400">Persoalan Positif ${i + 1}</span>
+              <p class="text-xs font-medium text-slate-200 mt-0.5">${escapeHtml(qText)}</p>
+            </div>
+            <select onchange="updatePersoalanScore(${i}, this.value)" class="bg-navy-900 border border-slate-700 rounded-lg px-2.5 py-1 text-xs text-white focus:outline-none shrink-0">
+              <option value="2" ${currentScore === 2 ? 'selected' : ''}>Jelas & Berkembang (2m)</option>
+              <option value="1" ${currentScore === 1 ? 'selected' : ''}>Kurang Jelas (1m)</option>
+              <option value="0" ${currentScore === 0 ? 'selected' : ''}>Lemah / Tiada (0m)</option>
+            </select>
+          </div>
+        `;
+      }).join('');
+
+      renderGayaSlots();
+      calculateRubricScores();
+    }
+
+    function renderGayaSlots() {
+      const container = document.getElementById('rubric-gaya-slots');
+      if (!container) return;
+
+      container.innerHTML = [0, 1, 2, 3].map(idx => {
+        const slot = appState.rubricScores.d[idx] || { typeId: GAYA_BAHASA_DATABASE[idx].id, score: 2 };
+        return `
+          <div class="p-3 bg-navy-950 rounded-xl border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-bold text-gold-400 uppercase">Jenis ${idx + 1}</span>
+              <select onchange="updateGayaScore(${idx}, 'score', this.value)" class="bg-navy-900 border border-slate-700 rounded px-2 py-0.5 text-xs text-white">
+                <option value="2" ${slot.score == 2 ? 'selected' : ''}>Jelas & Berkesan (2m)</option>
+                <option value="1" ${slot.score == 1 ? 'selected' : ''}>Kurang Sesuai (1m)</option>
+                <option value="0" ${slot.score == 0 ? 'selected' : ''}>Tiada (0m)</option>
+              </select>
+            </div>
+            <select onchange="updateGayaScore(${idx}, 'typeId', this.value)" class="w-full bg-navy-900 border border-slate-700 rounded-lg px-2 py-1 text-xs text-amber-200">
+              ${GAYA_BAHASA_DATABASE.map(g => `
+                <option value="${g.id}" ${slot.typeId === g.id ? 'selected' : ''}>${g.name}</option>
+              `).join('')}
+            </select>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updatePersoalanScore(index, value) {
+      appState.rubricScores.b[index] = parseInt(value, 10);
+      saveState();
+      calculateRubricScores();
+    }
+
+    function updateGayaScore(index, field, value) {
+      if (field === 'score') {
+        appState.rubricScores.d[index].score = parseInt(value, 10);
+      } else if (field === 'typeId') {
+        appState.rubricScores.d[index].typeId = value;
+      }
+      saveState();
+      calculateRubricScores();
+    }
+
+    function calculateRubricScores() {
+      const a1Val = parseInt(document.getElementById('select-a1-title')?.value || 1, 10);
+      const a2Val = parseInt(document.getElementById('select-a2-continuity')?.value || 2, 10);
+      const subA = a1Val + a2Val;
+      document.getElementById('score-kreativiti').innerText = `${subA} / 3`;
+      document.getElementById('rubric-a-subtotal').innerText = `Subtotal: ${subA}/3`;
+
+      const subB = appState.rubricScores.b.reduce((acc, curr) => acc + curr, 0);
+      document.getElementById('score-persoalan').innerText = `${subB} / 8`;
+      document.getElementById('rubric-b-subtotal').innerText = `Subtotal: ${subB}/8`;
+
+      const c1Val = parseInt(document.getElementById('select-c1-diksi')?.value || 2, 10);
+      const lineCount = parseInt(document.getElementById('input-count-lines')?.value || 35, 10);
+      const stanzaCount = parseInt(document.getElementById('input-count-stanzas')?.value || 5, 10);
+
+      let c2Score = (lineCount >= 30 && lineCount <= 40) ? 2 : (lineCount > 0 ? 1 : 0);
+      let c3Score = (stanzaCount >= 4) ? 2 : (stanzaCount > 0 ? 1 : 0);
+
+      const badgeC2 = document.getElementById('badge-c2-status');
+      if (badgeC2) {
+        badgeC2.innerText = c2Score === 2 ? 'Memenuhi Syarat 30–40 (2m)' : 'Kurang/Lebih Syarat (1m)';
+        badgeC2.className = `inline-block text-[10px] px-2 py-0.5 rounded font-semibold ${c2Score === 2 ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-amber-950 text-amber-300 border border-amber-800'}`;
+      }
+
+      const badgeC3 = document.getElementById('badge-c3-status');
+      if (badgeC3) {
+        badgeC3.innerText = c3Score === 2 ? 'Memenuhi Syarat 4 ke atas (2m)' : 'Kurang 4 Rangkap (1m)';
+        badgeC3.className = `inline-block text-[10px] px-2 py-0.5 rounded font-semibold ${c3Score === 2 ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-amber-950 text-amber-300 border border-amber-800'}`;
+      }
+
+      const subC = c1Val + c2Score + c3Score;
+      document.getElementById('score-teknik').innerText = `${subC} / 6`;
+      document.getElementById('rubric-c-subtotal').innerText = `Subtotal: ${subC}/6`;
+
+      const selectedTypes = appState.rubricScores.d.map(item => item.typeId);
+      const uniqueTypesCount = new Set(selectedTypes).size;
+
+      let subD = appState.rubricScores.d.reduce((acc, curr) => acc + curr.score, 0);
+
+      if (uniqueTypesCount < 4) {
+        subD = Math.min(subD, uniqueTypesCount * 2);
+      }
+
+      document.getElementById('score-gaya').innerText = `${subD} / 8`;
+      document.getElementById('rubric-d-subtotal').innerText = `Subtotal: ${subD}/8 ${uniqueTypesCount < 4 ? '(Ada jenis bertindih!)' : ''}`;
+
+      const grandTotal = subA + subB + subC + subD;
+      document.getElementById('final-total-score').innerText = `${grandTotal} / 25`;
+    }
+
+    function saveAndFinishSession() {
+      saveState();
+      showFloatingToast('Tahniah! Rekod latihan sajak anda telah disimpan di pelayar.');
+    }
+
+    // --- 13. MODAL & KAMUS GAYA BAHASA ---
+    function renderKamusGayaGrid() {
+      const grid = document.getElementById('kamus-gaya-grid');
+      if (!grid) return;
+
+      grid.innerHTML = GAYA_BAHASA_DATABASE.map(g => `
+        <div class="p-3 rounded-xl bg-navy-950 border border-slate-800 space-y-1">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-gold-400">${g.name}</span>
+            <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-800 text-slate-300">STPM</span>
+          </div>
+          <p class="text-slate-300 text-[11px] leading-relaxed">${g.def}</p>
+          <div class="pt-1 text-[11px]">
+            <span class="text-slate-500">Contoh Puitis:</span>
+            <p class="text-amber-200/90 font-serif italic">${escapeHtml(g.contoh)}</p>
+          </div>
+          <div class="pt-1 text-[10px] text-slate-400">
+            <strong>Fungsi:</strong> ${g.fungsi}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openModal(modalId) {
+      const m = document.getElementById(modalId);
+      if (m) m.classList.remove('hidden');
+    }
+
+    function closeModal(modalId) {
+      const m = document.getElementById(modalId);
+      if (m) m.classList.add('hidden');
+    }
+
+    // --- 14. UTILITI & NOTIFIKASI TOAST ---
+    function showFloatingToast(message) {
+      const existing = document.getElementById('floating-toast');
+      if (existing) existing.remove();
+
+      const toast = document.createElement('div');
+      toast.id = 'floating-toast';
+      toast.className = 'fixed bottom-5 right-5 z-50 px-4 py-3 rounded-xl bg-navy-900 border border-gold-500/50 text-white text-xs sm:text-sm shadow-2xl flex items-center gap-2 transition-all transform duration-300 translate-y-0';
+      toast.innerHTML = `
+        <i class="fa-solid fa-circle-info text-gold-400 text-base"></i>
+        <span>${escapeHtml(message)}</span>
+      `;
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 400);
+      }, 3500);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function setupEventListeners() {
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeModal('modal-jalin-info');
+          closeModal('modal-skema-info');
+          closeModal('modal-kamus-gaya');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
